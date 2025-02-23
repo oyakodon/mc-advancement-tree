@@ -1,0 +1,16 @@
+# https://developers.cloudflare.com/workers/wrangler/configuration/
+
+name = "next-hono-pages"
+pages_build_output_dir = ".vercel/output/static"
+compatibility_date = "2025-02-06"
+compatibility_flags = [ "nodejs_compat" ]
+
+[observability]
+enabled = true
+
+[vars]
+NODE_VERSION = "22"
+
+[[kv_namespaces]]
+binding = "KV"
+id = "a9b7245b6c384b23a99fd0d920b067bd"
