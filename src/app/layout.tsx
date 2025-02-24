@@ -23,7 +23,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='ja'>
-      <body className={`${MPlusRounded1c.variable} --font-MPlusRounded1c font-sans bg-gray-400`}>
+      <body className={`${MPlusRounded1c.variable} --font-MPlusRounded1c font-sans`}>
         <ThemeProvider
           attribute='class'
           defaultTheme='system'
