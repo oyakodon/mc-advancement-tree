@@ -30,7 +30,7 @@ export default function WorldListItem({ world, detail, href }: Props) {
   const online = players.filter((_, status) => status).length
 
   return (
-    <div className='flex flex-col flex-wrap max-w-sm p-4 bg-white border border-gray-200 dark:bg-gray-800 dark:border-gray-700 rounded-lg shadow-sm min-w-45 '>
+    <div className='flex flex-col flex-wrap max-w-sm p-4 bg-white border border-gray-200 dark:bg-gray-700 dark:border-gray-500 rounded-lg shadow-sm min-w-45 '>
       <div className='flex justify-between gap-4'>
         <LinkIfNeeded item={world} href={href}>
           <span className='text-lg font-bold truncate'>{world.name}</span>
@@ -50,7 +50,7 @@ export default function WorldListItem({ world, detail, href }: Props) {
 
       <div className='flex justify-end'>
         <LinkIfNeeded item={world} href={href}>
-          <div className='inline-flex gap-1 items-center px-2 py-1.5 rounded-md text-white bg-slate-700 hover:bg-slate-800 dark:hover:bg-slate-600'>
+          <div className='inline-flex gap-1 items-center px-2 py-1.5 rounded-md text-white bg-cyan-700 hover:bg-cyan-600'>
             <span className='text-sm font-medium'>Player</span>
             <ChevronRight className='size-4' />
           </div>
