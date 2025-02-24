@@ -27,7 +27,7 @@ const convert = (nodes: Record<string, LocalizedNode>, key: string): TreeNode | 
     }
   }
 
-  children.sort((lhs, rhs) => lhs.name.localeCompare(rhs.name))
+  children.sort((a, b) => a.name.localeCompare(b.name))
 
   return {
     name: nodes[key].key,
