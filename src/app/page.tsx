@@ -1,4 +1,5 @@
 import { Metadata } from 'next'
+import Image from 'next/image'
 
 import WorldList from '@/components/world/WorldList'
 import { client, options } from '@/lib/hono'
@@ -19,6 +20,25 @@ export default async function Home() {
 
   return (
     <main className='min-h-screen bg-slate-200 dark:bg-gray-800'>
+      <section className="bg-center bg-no-repeat bg-[url('/images/background.png')] bg-gray-400 bg-blend-multiply">
+        <div className='px-4 mx-auto max-w-screen-xl py-16'>
+          <div className='flex items-center gap-2'>
+            <Image
+              alt=''
+              src={'/images/icon.png'}
+              width={48}
+              height={48}
+              decoding='async'
+              priority
+            />
+
+            <h1 className='text-xl font-extrabold tracking-tight leading-none text-white md:text-2xl lg:text-3xl'>
+              Advancements
+            </h1>
+          </div>
+        </div>
+      </section>
+
       <div className='container p-6 sm:mx-auto'>{worlds && <WorldList worlds={worlds} />}</div>
     </main>
   )
