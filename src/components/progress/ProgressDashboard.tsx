@@ -14,7 +14,7 @@ interface Props {
   tree: ProgressTree
 }
 
-export default function ProgressView({ tree }: Props) {
+export default function ProgressDashboard({ tree }: Props) {
   const nodes: Record<string, ProgressNode> = useMemo(
     () =>
       tree.nodes.reduce<Record<string, ProgressNode>>(
