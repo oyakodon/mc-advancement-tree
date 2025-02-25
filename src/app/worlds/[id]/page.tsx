@@ -1,5 +1,6 @@
 import { Metadata } from 'next'
 
+import ErrorFallback from '@/components/modal/ErrorFallback'
 import BreadcrumbNav from '@/components/navigation/BreadcrumbNav'
 import NavBar from '@/components/navigation/NavBar'
 import PlayerRanking from '@/components/player/PlayerRanking'
@@ -41,8 +42,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function World({ params }: Props) {
   const id = (await params).id
-  const world = (await getWorld(id))!
-  const players = (await getPlayers(id))!
+  const world = await getWorld(id)
+  const players = await getPlayers(id)
+
+  if (!world || !players) {
+    return <ErrorFallback message='ワールド情報取得時にエラーが発生しました。' />
+  }
 
   return (
     <main className='min-h-screen flex flex-col bg-slate-50 dark:bg-slate-800'>
