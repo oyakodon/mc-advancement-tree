@@ -1,0 +1,68 @@
+import { Info } from 'lucide-react'
+import { ReactNode } from 'react'
+
+import PlayerIcon from '../player/PlayerIcon'
+
+import ProgressBadge from './ProgressBadge'
+import ProgressTooltip from './ProgressTooltip'
+
+import {
+  Tooltip as CnTooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@/components/ui/tooltip'
+import { PlayerProfile } from '@/model/Player'
+import { Progress } from '@/model/Progress'
+
+const Tooltip = ({ tip, children }: { tip: ReactNode; children: ReactNode }) => {
+  return (
+    <TooltipProvider>
+      <CnTooltip>
+        <TooltipTrigger>{children}</TooltipTrigger>
+
+        <TooltipContent>{tip}</TooltipContent>
+      </CnTooltip>
+    </TooltipProvider>
+  )
+}
+
+const Updated = ({ achieved }: { achieved: string }) => {
+  const date = new Date(achieved)
+  const updated = `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`
+
+  return <span className='text-xs font-medium'>Updated: {updated}</span>
+}
+
+interface Props {
+  player: PlayerProfile
+  progress: Progress
+}
+
+const PlayerProgress = ({ player: p, progress }: Props) => {
+  return (
+    <div className='flex flex-wrap flex-auto items-center justify-between p-2 gap-3 max-h-18'>
+      <div className='m-2 mr-0'>
+        <PlayerIcon player={p} width={48} />
+      </div>
+
+      <div className='flex flex-auto'>
+        <span className='font-bold lg:text-md truncate dark:text-white'>{p.name}</span>
+      </div>
+
+      <div className='flex items-center gap-4'>
+        {progress.achieved && (
+          <Tooltip tip={<Updated achieved={progress.achieved} />}>
+            <Info color='gray' />
+          </Tooltip>
+        )}
+
+        <Tooltip tip={<ProgressTooltip progress={progress} />}>
+          <ProgressBadge progress={progress} />
+        </Tooltip>
+      </div>
+    </div>
+  )
+}
+
+export default PlayerProgress
