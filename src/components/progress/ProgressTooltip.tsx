@@ -8,7 +8,7 @@ const ProgressTooltip = ({ progress: p }: Props) => {
   const v = Math.floor((p.done / p.total) * 100)
 
   return (
-    <div className='pt-0 p-1.5 rounded bg-white border'>
+    <div className='flex flex-col gap-1 p-1'>
       <span className='text-xs font-medium'>
         {p.done} / {p.total}
       </span>
