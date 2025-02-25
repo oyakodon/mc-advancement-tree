@@ -36,13 +36,6 @@ export const Primary: Story = {
   },
 }
 
-export const WithLink: Story = {
-  args: {
-    players: [mock(10, 1), mock(5, 2), mock(0, 3)],
-    href: (p) => `/${p.id}`,
-  },
-}
-
 export const SingleOnline: Story = {
   args: {
     players: [mock(10, 1)],
