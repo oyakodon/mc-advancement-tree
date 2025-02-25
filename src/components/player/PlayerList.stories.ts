@@ -10,6 +10,9 @@ const meta = {
   parameters: {
     layout: 'padded',
   },
+  args: {
+    world: 'world',
+  },
   tags: ['autodocs'],
 } satisfies Meta<typeof PlayerList>
 
