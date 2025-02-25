@@ -19,7 +19,7 @@ export default async function Home() {
   const worlds = await getWorlds()
 
   return (
-    <main className='min-h-screen bg-slate-200 dark:bg-gray-800'>
+    <main className='min-h-screen bg-slate-50 dark:bg-slate-800'>
       <section className="bg-center bg-no-repeat bg-[url('/images/background.png')] bg-gray-400 bg-blend-multiply">
         <div className='px-4 mx-auto max-w-screen-xl py-16'>
           <div className='flex items-center gap-2'>
