@@ -20,7 +20,7 @@ const medal = (done: number, rank?: number): string | null => {
   return ['fill-gold', 'fill-silver', 'fill-bronze'][rank - 1]
 }
 
-export default function PlayerListItem({ player, rank }: Props) {
+export default function PlayerCard({ player, rank }: Props) {
   const medalStyle = medal(player.progress.done, rank)
 
   return (
