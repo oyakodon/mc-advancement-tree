@@ -58,16 +58,13 @@ export default async function World({ params }: Props) {
           <BreadcrumbNav items={[{ title: 'Home', href: '/' }, { title: 'World' }]} />
         </div>
 
-        <div className='flex flex-col md:flex-row min-h-64'>
-          <div className='w-full md:w-100 md:order-1 pb-4 md:pl-4 dark:border-gray-400 border-b md:border-b-0 md:border-l'>
+        <div className='flex flex-col md:flex-row'>
+          <div className='w-full md:w-100 md:order-1 md:pl-8 dark:border-gray-400 md:border-l'>
             <WorldDetail world={world} />
           </div>
 
           <div className='flex flex-col w-full pt-4 md:p-0'>
-            <span className='font-bold text-xl'>Players</span>
-            <div className='flex flex-col sm:mx-4 lg:mx-16'>
-              <PlayerRanking players={players} world={id} />
-            </div>
+            <PlayerRanking players={players} world={id} />
           </div>
         </div>
       </div>

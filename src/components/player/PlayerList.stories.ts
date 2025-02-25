@@ -10,6 +10,9 @@ const meta = {
   parameters: {
     layout: 'padded',
   },
+  args: {
+    world: 'world',
+  },
   tags: ['autodocs'],
 } satisfies Meta<typeof PlayerList>
 
@@ -33,13 +36,6 @@ const mock = (done: number, rank: number, online: boolean = true): Player & { ra
 export const Primary: Story = {
   args: {
     players: [mock(10, 1), mock(5, 2), mock(0, 3)],
-  },
-}
-
-export const WithLink: Story = {
-  args: {
-    players: [mock(10, 1), mock(5, 2), mock(0, 3)],
-    href: (p) => `/${p.id}`,
   },
 }
 
