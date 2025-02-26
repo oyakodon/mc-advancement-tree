@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 
-import AdvancementIcon from '../AdvancementIcon'
+import AdvancementIcon from '../advancement/AdvancementIcon'
 
 import ProgressCriteria from './ProgressCriteria'
 

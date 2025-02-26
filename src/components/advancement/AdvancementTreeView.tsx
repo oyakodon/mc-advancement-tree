@@ -3,7 +3,7 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import { type CustomNodeElementProps, Tree } from 'react-d3-tree'
 
-import AdvancementIcon from '../AdvancementIcon'
+import AdvancementIcon from './AdvancementIcon'
 
 import useCenteredTree from '@/hooks/useCenteredTree'
 import { LocalizedNode } from '@/model/ProgressNode'

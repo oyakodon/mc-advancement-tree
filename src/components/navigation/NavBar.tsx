@@ -1,8 +1,9 @@
 import Image from 'next/image'
 import { PropsWithChildren } from 'react'
 
-import { LanguagePicker } from '../LanguagePicker'
 import { ModeToggle } from '../theme/ModeToggle'
+
+import { LanguagePicker } from './LanguagePicker'
 
 type Props = PropsWithChildren<{
   language?: boolean
