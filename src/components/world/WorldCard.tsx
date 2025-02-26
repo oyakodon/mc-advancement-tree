@@ -1,10 +1,7 @@
 'use client'
 
-import { UrlObject } from 'url'
-
 import { ChevronRight, Users } from 'lucide-react'
-
-import LinkIfNeeded from '../LinkIfNeeded'
+import Link from 'next/link'
 
 import { World } from '@/model/World'
 
@@ -13,7 +10,6 @@ type Details = 'version' | 'motd'
 interface Props {
   world: World
   detail?: Details
-  href?: (w: World) => string | UrlObject
 }
 
 const detailContent = (w: World, detail: Details) => {
@@ -25,16 +21,16 @@ const detailContent = (w: World, detail: Details) => {
   }
 }
 
-export default function WorldCard({ world, detail, href }: Props) {
+export default function WorldCard({ world, detail }: Props) {
   const players = Object.entries(world.players)
   const online = players.filter((_, status) => status).length
 
   return (
     <div className='flex flex-col flex-wrap max-w-sm p-4 bg-white border border-gray-200 dark:bg-gray-700 dark:border-gray-500 rounded-lg shadow-sm min-w-45 '>
       <div className='flex justify-between gap-4'>
-        <LinkIfNeeded item={world} href={href}>
+        <Link href={`/worlds/${world.id}`}>
           <span className='text-lg font-bold truncate'>{world.name}</span>
-        </LinkIfNeeded>
+        </Link>
 
         <div className='flex items-center gap-2 rounded-full px-2 py-1.5 border dark:border-gray-500'>
           <Users className='size-4' />
@@ -49,12 +45,12 @@ export default function WorldCard({ world, detail, href }: Props) {
       </div>
 
       <div className='flex justify-end'>
-        <LinkIfNeeded item={world} href={href}>
+        <Link href={`/worlds/${world.id}`}>
           <div className='inline-flex gap-1 items-center px-2 py-1.5 rounded-md text-white bg-cyan-700 hover:bg-cyan-600'>
             <span className='text-sm font-medium'>Player</span>
             <ChevronRight className='size-4' />
           </div>
-        </LinkIfNeeded>
+        </Link>
       </div>
     </div>
   )
