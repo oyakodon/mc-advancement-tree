@@ -57,7 +57,7 @@ export default async function Player({ searchParams }: Props) {
 
   return (
     <main className='flex flex-col h-screen bg-slate-50 dark:bg-slate-800 '>
-      <NavBar href={`/worlds/${parsed.data.w}`} language />
+      <NavBar language />
 
       <div className='lg:container lg:mx-auto p-2 pt-0 flex flex-auto'>
         <div className='flex flex-col flex-auto'>

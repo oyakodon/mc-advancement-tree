@@ -17,12 +17,6 @@ type Story = StoryObj<typeof meta>
 
 export const Primary: Story = {}
 
-export const WithLink: Story = {
-  args: {
-    href: '/',
-  },
-}
-
 export const UseLanguage: Story = {
   args: {
     language: true,
