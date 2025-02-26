@@ -51,7 +51,7 @@ export default async function World({ params }: Props) {
 
   return (
     <main className='min-h-screen flex flex-col bg-slate-50 dark:bg-slate-800'>
-      <NavBar href={'/'} />
+      <NavBar />
 
       <div className='container mx-auto p-4 md:px-8'>
         <div className='pb-4'>
