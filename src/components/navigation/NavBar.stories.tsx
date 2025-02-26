@@ -23,6 +23,12 @@ export const WithLink: Story = {
   },
 }
 
+export const UseLanguage: Story = {
+  args: {
+    language: true,
+  },
+}
+
 export const WithChildren: Story = {
   args: {
     children: <div>Content</div>,
