@@ -17,10 +17,10 @@ const getPlayer = async ({ p: id }: { p: string }) => {
   return res.ok ? await res.json() : null
 }
 
-const getTree = async ({ w, p }: { w: string; p: string }) => {
+const getTree = async ({ w, p, lang }: { w: string; p: string; lang?: string }) => {
   const res = await client.api.v1.tree.$get(
     {
-      query: { w, p, lang: 'ja_jp' },
+      query: { w, p, lang: lang || 'ja_jp' },
     },
     options,
   )
@@ -30,6 +30,7 @@ const getTree = async ({ w, p }: { w: string; p: string }) => {
 const schema = z.object({
   w: z.coerce.string(),
   p: z.coerce.string(),
+  lang: z.coerce.string().optional(),
 })
 
 type Props = {
