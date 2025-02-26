@@ -50,7 +50,7 @@ export default function AdvancementTab({ tabs, tabKey, setTabKey }: Props) {
         ))}
       </nav>
 
-      <div className='sm:hidden flex items-center justify-between'>
+      <div className={`sm:hidden flex items-center justify-between ${tabBorderActive}`}>
         <button
           className={tabKey !== prev ? 'text-cyan-500' : 'text-gray-500 dark:text-white'}
           onClick={() => {

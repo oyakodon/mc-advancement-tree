@@ -1,15 +1,15 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import ProgressView from './ProgressView'
+import ProgressDashboard from './ProgressDashboard'
 
 const meta = {
-  title: 'Components/Progress/ProgressView',
-  component: ProgressView,
+  title: 'Components/Progress/ProgressDashboard',
+  component: ProgressDashboard,
   parameters: {
     layout: 'fullscreen',
   },
   tags: ['autodocs'],
-} satisfies Meta<typeof ProgressView>
+} satisfies Meta<typeof ProgressDashboard>
 
 export default meta
 
