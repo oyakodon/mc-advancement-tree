@@ -1,6 +1,6 @@
 'use client'
 
-import WorldListItem from './WorldListItem'
+import WorldCard from './WorldCard'
 
 import { World } from '@/model/World'
 
@@ -13,7 +13,7 @@ export default function WorldList({ worlds }: Props) {
     <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2'>
       {worlds.map((w) => (
         <div key={w.id} className='col-span-1'>
-          <WorldListItem world={w} href={(w: World) => `/worlds/${w.id}`} detail='version' />
+          <WorldCard world={w} href={(w: World) => `/worlds/${w.id}`} detail='version' />
         </div>
       ))}
     </div>

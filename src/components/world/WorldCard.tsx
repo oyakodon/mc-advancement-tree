@@ -25,7 +25,7 @@ const detailContent = (w: World, detail: Details) => {
   }
 }
 
-export default function WorldListItem({ world, detail, href }: Props) {
+export default function WorldCard({ world, detail, href }: Props) {
   const players = Object.entries(world.players)
   const online = players.filter((_, status) => status).length
 

@@ -36,10 +36,3 @@ export const Primary: Story = {
     worlds: [mock('1', 'Hoge'), mock('2', 'Fuga'), mock('3', 'Piyo')],
   },
 }
-
-export const WithLink: Story = {
-  args: {
-    worlds: [mock('1', 'Server')],
-    href: (w) => `/${w.id}`,
-  },
-}
