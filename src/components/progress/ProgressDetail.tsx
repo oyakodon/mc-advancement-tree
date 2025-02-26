@@ -6,6 +6,19 @@ import ProgressCriteria from './ProgressCriteria'
 
 import { ProgressNode } from '@/model/ProgressNode'
 
+const Skelton = () => {
+  return (
+    <div className='flex flex-col space-y-3 max-w-[480px] sm:max-w-none'>
+      <div className='animate-pulse bg-muted h-[80px] rounded-xl' />
+      <div className='space-y-2'>
+        <div className='animate-pulse rounded-md bg-muted h-4 w-[250px]' />
+        <div className='animate-pulse rounded-md bg-muted h-4 w-[200px]' />
+        <div className='animate-pulse rounded-md bg-muted h-4 w-[150px]' />
+      </div>
+    </div>
+  )
+}
+
 interface Props {
   nodes: Record<string, ProgressNode>
   selected: string | null
@@ -16,7 +29,9 @@ export default function ProgressDetail({ nodes, selected }: Props) {
     return selected ? nodes[selected] : null
   }, [nodes, selected])
 
-  if (!node) return
+  if (!node) {
+    return <Skelton />
+  }
 
   return (
     <div className='flex flex-col gap-2'>
