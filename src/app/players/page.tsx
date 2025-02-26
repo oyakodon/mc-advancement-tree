@@ -7,7 +7,7 @@ import PlayerProgress from '@/components/progress/PlayerProgress'
 import ProgressDashboard from '@/components/progress/ProgressDashboard'
 import { client, options } from '@/lib/hono'
 
-const getPlayer = async (id: string) => {
+const getPlayer = async ({ p: id }: { p: string }) => {
   const res = await client.api.v1.players[':id'].$get(
     {
       param: { id },
@@ -17,7 +17,7 @@ const getPlayer = async (id: string) => {
   return res.ok ? await res.json() : null
 }
 
-const getTree = async (w: string, p: string) => {
+const getTree = async ({ w, p }: { w: string; p: string }) => {
   const res = await client.api.v1.tree.$get(
     {
       query: { w, p, lang: 'ja_jp' },
@@ -38,7 +38,7 @@ type Props = {
 
 export async function generateMetadata({ searchParams }: Props): Promise<Metadata> {
   const parsed = schema.safeParse(await searchParams)
-  const player = parsed.success ? await getPlayer(parsed.data.p) : null
+  const player = parsed.success ? await getPlayer(parsed.data) : null
 
   return {
     title: `${player?.name || 'Player Not Found'}`,
@@ -47,8 +47,8 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
 
 export default async function Player({ searchParams }: Props) {
   const parsed = schema.safeParse(await searchParams)
-  const player = parsed.success ? await getPlayer(parsed.data.p) : null
-  const tree = parsed.success ? await getTree(parsed.data.w, parsed.data.p) : null
+  const player = parsed.success ? await getPlayer(parsed.data) : null
+  const tree = parsed.success ? await getTree(parsed.data) : null
 
   if (!parsed.success || !player || !tree) {
     return <ErrorFallback message='進捗情報取得時にエラーが発生しました。' />
