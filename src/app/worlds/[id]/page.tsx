@@ -53,10 +53,8 @@ export default async function World({ params }: Props) {
     <main className='min-h-screen flex flex-col bg-slate-50 dark:bg-slate-800'>
       <NavBar />
 
-      <div className='container mx-auto p-4 md:px-8'>
-        <div className='pb-4'>
-          <BreadcrumbNav items={[{ title: 'Home', href: '/' }, { title: 'World' }]} />
-        </div>
+      <div className='lg:container lg:mx-auto p-2 gap-2 flex flex-col flex-auto'>
+        <BreadcrumbNav items={[{ title: 'World' }]} />
 
         <div className='flex flex-col md:flex-row'>
           <div className='w-full md:w-100 md:order-1 md:pl-8 dark:border-gray-400 md:border-l'>
