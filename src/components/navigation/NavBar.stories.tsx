@@ -21,6 +21,11 @@ export const UseLanguage: Story = {
   args: {
     language: true,
   },
+  parameters: {
+    nextjs: {
+      appDirectory: true,
+    },
+  },
 }
 
 export const WithChildren: Story = {
