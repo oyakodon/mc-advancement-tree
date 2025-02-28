@@ -8,21 +8,13 @@ import {
   BreadcrumbSeparator,
 } from '../ui/breadcrumb'
 
-interface INavItem {
+interface NavItem {
   title: string
   href?: string
 }
 
 interface Props {
-  items: INavItem[]
-}
-
-const NavItem = ({ item }: { item: INavItem }) => {
-  return (
-    <BreadcrumbItem>
-      <BreadcrumbLink href={item.href}>{item.title}</BreadcrumbLink>
-    </BreadcrumbItem>
-  )
+  items: NavItem[]
 }
 
 const BreadcrumbNav = ({ items }: Props) => {
@@ -31,10 +23,12 @@ const BreadcrumbNav = ({ items }: Props) => {
   return (
     <Breadcrumb>
       <BreadcrumbList>
-        {items.map((i, idx) => (
+        {items.map((item, idx) => (
           <Fragment key={idx}>
             {idx > 0 && <BreadcrumbSeparator />}
-            <NavItem item={i} />
+            <BreadcrumbItem>
+              <BreadcrumbLink href={item.href}>{item.title}</BreadcrumbLink>
+            </BreadcrumbItem>
           </Fragment>
         ))}
       </BreadcrumbList>
