@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { ModeToggle } from './ModeToggle'
 
 const meta = {
-  title: 'Components/Generic/ModeToggle',
+  title: 'Components/Theme/ModeToggle',
   component: ModeToggle,
   parameters: {
     layout: 'centered',
