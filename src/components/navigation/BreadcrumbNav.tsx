@@ -1,3 +1,4 @@
+import { Home } from 'lucide-react'
 import { Fragment } from 'react'
 
 import {
@@ -23,9 +24,18 @@ const BreadcrumbNav = ({ items }: Props) => {
   return (
     <Breadcrumb>
       <BreadcrumbList>
+        <BreadcrumbItem>
+          <BreadcrumbLink href='/'>
+            <div className='flex items-center gap-1'>
+              <Home size={16} />
+              Home
+            </div>
+          </BreadcrumbLink>
+        </BreadcrumbItem>
+
         {items.map((item, idx) => (
           <Fragment key={idx}>
-            {idx > 0 && <BreadcrumbSeparator />}
+            <BreadcrumbSeparator />
             <BreadcrumbItem>
               <BreadcrumbLink href={item.href}>{item.title}</BreadcrumbLink>
             </BreadcrumbItem>
