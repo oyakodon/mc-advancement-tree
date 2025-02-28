@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import NavBar from './NavBar'
 
 const meta = {
-  title: 'Components/Generic/NavBar',
+  title: 'Components/Navigation/NavBar',
   component: NavBar,
   parameters: {
     layout: 'fullscreen',

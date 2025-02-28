@@ -2,6 +2,7 @@ import { Metadata } from 'next'
 import { z } from 'zod'
 
 import ErrorFallback from '@/components/modal/ErrorFallback'
+import BreadcrumbNav from '@/components/navigation/BreadcrumbNav'
 import NavBar from '@/components/navigation/NavBar'
 import PlayerProgress from '@/components/progress/PlayerProgress'
 import ProgressDashboard from '@/components/progress/ProgressDashboard'
@@ -46,6 +47,11 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
   }
 }
 
+const navItems = (worldId: string, name: string) => [
+  { title: 'World', href: `/worlds/${worldId}` },
+  { title: name },
+]
+
 export default async function Player({ searchParams }: Props) {
   const parsed = schema.safeParse(await searchParams)
   const player = parsed.success ? await getPlayer(parsed.data) : null
@@ -59,8 +65,9 @@ export default async function Player({ searchParams }: Props) {
     <main className='flex flex-col h-screen bg-slate-50 dark:bg-slate-800 '>
       <NavBar language />
 
-      <div className='lg:container lg:mx-auto p-2 pt-0 flex flex-auto'>
+      <div className='lg:container lg:mx-auto p-2 flex flex-auto'>
         <div className='flex flex-col flex-auto'>
+          <BreadcrumbNav items={navItems(parsed.data.w, player.name)} />
           <PlayerProgress player={player} progress={tree.progress} />
           <ProgressDashboard tree={tree} />
         </div>

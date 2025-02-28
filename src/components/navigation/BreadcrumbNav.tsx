@@ -1,3 +1,4 @@
+import { Home } from 'lucide-react'
 import { Fragment } from 'react'
 
 import {
@@ -8,21 +9,13 @@ import {
   BreadcrumbSeparator,
 } from '../ui/breadcrumb'
 
-interface INavItem {
+interface NavItem {
   title: string
   href?: string
 }
 
 interface Props {
-  items: INavItem[]
-}
-
-const NavItem = ({ item }: { item: INavItem }) => {
-  return (
-    <BreadcrumbItem>
-      <BreadcrumbLink href={item.href}>{item.title}</BreadcrumbLink>
-    </BreadcrumbItem>
-  )
+  items: NavItem[]
 }
 
 const BreadcrumbNav = ({ items }: Props) => {
@@ -31,10 +24,21 @@ const BreadcrumbNav = ({ items }: Props) => {
   return (
     <Breadcrumb>
       <BreadcrumbList>
-        {items.map((i, idx) => (
+        <BreadcrumbItem>
+          <BreadcrumbLink href='/'>
+            <div className='flex items-center gap-1'>
+              <Home size={16} />
+              Home
+            </div>
+          </BreadcrumbLink>
+        </BreadcrumbItem>
+
+        {items.map((item, idx) => (
           <Fragment key={idx}>
-            {idx > 0 && <BreadcrumbSeparator />}
-            <NavItem item={i} />
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbLink href={item.href}>{item.title}</BreadcrumbLink>
+            </BreadcrumbItem>
           </Fragment>
         ))}
       </BreadcrumbList>
