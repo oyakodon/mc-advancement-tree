@@ -12,7 +12,7 @@ type Props = PropsWithChildren<{
 const NavBar = ({ language, children }: Props) => {
   return (
     <nav className='flex items-center justify-between bg-white dark:bg-slate-700 border border-gray-300 dark:border-slate-900 py-1 px-2'>
-      <Image alt='' src={'/images/icon.png'} width={48} height={48} decoding='async' priority />
+      <Image alt='' src={'/images/icon.svg'} width={48} height={48} decoding='async' priority />
 
       {children}
 
