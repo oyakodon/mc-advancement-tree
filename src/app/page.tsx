@@ -25,7 +25,7 @@ export default async function Home() {
           <div className='flex items-center gap-2'>
             <Image
               alt=''
-              src={'/images/icon.png'}
+              src={'/images/icon.svg'}
               width={48}
               height={48}
               decoding='async'
