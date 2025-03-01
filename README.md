@@ -6,6 +6,7 @@ Minecraft Advancement Tree
 
 ```
 bun install
+echo "APP_URL=http://localhost:3000/" > .env.local
 bun dev
 ```
 
