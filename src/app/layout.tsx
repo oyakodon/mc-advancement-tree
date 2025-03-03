@@ -4,10 +4,10 @@ import { ThemeProvider } from '@/components/theme/theme-provider'
 
 import './globals.css'
 
-export const MPlusRounded1c = M_PLUS_Rounded_1c({
+const mplus = M_PLUS_Rounded_1c({
   subsets: ['latin'],
   weight: ['400', '700'],
-  variable: '--font-MPlusRounded1c',
+  variable: '--font-mplus',
   display: 'swap',
 })
 
@@ -18,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='ja'>
-      <body className={`${MPlusRounded1c.variable} --font-MPlusRounded1c font-sans`}>
+      <body className={`${mplus.variable} font-sans`}>
         <ThemeProvider
           attribute='class'
           defaultTheme='system'

@@ -5,7 +5,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        MPlusRounded1c: ['var(--font-MPlusRounded1c)'],
+        sans: ['var(--font-mplus)', 'sans-serif'],
       },
     },
   },
