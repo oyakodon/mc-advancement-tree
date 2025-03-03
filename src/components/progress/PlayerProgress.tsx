@@ -41,10 +41,8 @@ interface Props {
 
 const PlayerProgress = ({ player: p, progress }: Props) => {
   return (
-    <div className='flex flex-wrap flex-auto items-center justify-between p-2 gap-3 max-h-18'>
-      <div className='m-2 mr-0'>
+    <div className='flex flex-wrap flex-auto items-center justify-between gap-3 max-h-14'>
         <PlayerIcon player={p} width={48} />
-      </div>
 
       <div className='flex flex-auto'>
         <span className='font-bold lg:text-md truncate dark:text-white'>{p.name}</span>
