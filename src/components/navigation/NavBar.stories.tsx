@@ -28,6 +28,12 @@ export const UseLanguage: Story = {
   },
 }
 
+export const UseLinkToTop: Story = {
+  args: {
+    linkToTop: true,
+  },
+}
+
 export const WithChildren: Story = {
   args: {
     children: <div>Content</div>,
