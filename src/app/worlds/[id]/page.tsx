@@ -1,6 +1,6 @@
 import { Metadata } from 'next'
+import { notFound } from 'next/navigation'
 
-import ErrorFallback from '@/components/modal/ErrorFallback'
 import BreadcrumbNav from '@/components/navigation/BreadcrumbNav'
 import NavBar from '@/components/navigation/NavBar'
 import PlayerRanking from '@/components/player/PlayerRanking'
@@ -46,7 +46,7 @@ export default async function World({ params }: Props) {
   const players = await getPlayers(id)
 
   if (!world || !players) {
-    return <ErrorFallback message='ワールド情報取得時にエラーが発生しました。' />
+    notFound()
   }
 
   return (
