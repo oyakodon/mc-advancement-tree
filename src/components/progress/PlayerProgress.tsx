@@ -27,11 +27,11 @@ const Tooltip = ({ tip, children }: { tip: ReactNode; children: ReactNode }) => 
   )
 }
 
-const Updated = ({ achieved }: { achieved: string }) => {
+const AchievedTooltip = ({ achieved }: { achieved: string }) => {
   const date = new Date(achieved)
-  const updated = `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`
+  const dateText = `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`
 
-  return <span className='text-xs font-medium'>Updated: {updated}</span>
+  return <span className='text-xs font-medium'>Last achieved: {dateText}</span>
 }
 
 interface Props {
@@ -42,7 +42,7 @@ interface Props {
 const PlayerProgress = ({ player: p, progress }: Props) => {
   return (
     <div className='flex flex-wrap flex-auto items-center justify-between gap-3 max-h-14'>
-        <PlayerIcon player={p} width={48} />
+      <PlayerIcon player={p} width={48} />
 
       <div className='flex flex-auto'>
         <span className='font-bold lg:text-md truncate dark:text-white'>{p.name}</span>
@@ -50,7 +50,7 @@ const PlayerProgress = ({ player: p, progress }: Props) => {
 
       <div className='flex items-center gap-4'>
         {progress.achieved && (
-          <Tooltip tip={<Updated achieved={progress.achieved} />}>
+          <Tooltip tip={<AchievedTooltip achieved={progress.achieved} />}>
             <Info color='gray' />
           </Tooltip>
         )}
