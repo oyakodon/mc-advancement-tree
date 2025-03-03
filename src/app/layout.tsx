@@ -1,4 +1,3 @@
-import type { Metadata } from 'next'
 import { M_PLUS_Rounded_1c } from 'next/font/google'
 
 import { ThemeProvider } from '@/components/theme/theme-provider'
@@ -11,10 +10,6 @@ export const MPlusRounded1c = M_PLUS_Rounded_1c({
   variable: '--font-MPlusRounded1c',
   display: 'swap',
 })
-
-export const metadata: Metadata = {
-  title: 'Dendrogram',
-}
 
 export default function RootLayout({
   children,

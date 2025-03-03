@@ -1,7 +1,7 @@
 import { Metadata } from 'next'
+import { notFound } from 'next/navigation'
 import { z } from 'zod'
 
-import ErrorFallback from '@/components/modal/ErrorFallback'
 import BreadcrumbNav from '@/components/navigation/BreadcrumbNav'
 import NavBar from '@/components/navigation/NavBar'
 import PlayerProgress from '@/components/progress/PlayerProgress'
@@ -43,7 +43,7 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
   const player = parsed.success ? await getPlayer(parsed.data) : null
 
   return {
-    title: `${player?.name || 'Player Not Found'}`,
+    title: player?.name || '',
   }
 }
 
@@ -58,7 +58,7 @@ export default async function Player({ searchParams }: Props) {
   const tree = parsed.success ? await getTree(parsed.data) : null
 
   if (!parsed.success || !player || !tree) {
-    return <ErrorFallback message='進捗情報取得時にエラーが発生しました。' />
+    notFound()
   }
 
   return (
