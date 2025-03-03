@@ -66,7 +66,7 @@ export default async function Player({ searchParams }: Props) {
       <NavBar language />
 
       <div className='lg:container lg:mx-auto p-2 flex flex-auto'>
-        <div className='flex flex-col flex-auto'>
+        <div className='flex flex-col flex-auto gap-2'>
           <BreadcrumbNav items={navItems(parsed.data.w, player.name)} />
           <PlayerProgress player={player} progress={tree.progress} />
           <ProgressDashboard tree={tree} />

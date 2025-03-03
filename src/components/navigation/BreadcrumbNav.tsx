@@ -15,12 +15,10 @@ interface NavItem {
 }
 
 interface Props {
-  items: NavItem[]
+  items?: NavItem[]
 }
 
 const BreadcrumbNav = ({ items }: Props) => {
-  if (!items || items.length === 0) return null
-
   return (
     <Breadcrumb>
       <BreadcrumbList>
@@ -33,14 +31,15 @@ const BreadcrumbNav = ({ items }: Props) => {
           </BreadcrumbLink>
         </BreadcrumbItem>
 
-        {items.map((item, idx) => (
-          <Fragment key={idx}>
-            <BreadcrumbSeparator />
-            <BreadcrumbItem>
-              <BreadcrumbLink href={item.href}>{item.title}</BreadcrumbLink>
-            </BreadcrumbItem>
-          </Fragment>
-        ))}
+        {items &&
+          items.map((item, idx) => (
+            <Fragment key={idx}>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbLink href={item.href}>{item.title}</BreadcrumbLink>
+              </BreadcrumbItem>
+            </Fragment>
+          ))}
       </BreadcrumbList>
     </Breadcrumb>
   )
