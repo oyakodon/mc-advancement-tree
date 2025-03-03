@@ -43,7 +43,7 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
   const player = parsed.success ? await getPlayer(parsed.data) : null
 
   return {
-    title: `${player?.name || 'Player Not Found'}`,
+    title: player?.name || '',
   }
 }
 

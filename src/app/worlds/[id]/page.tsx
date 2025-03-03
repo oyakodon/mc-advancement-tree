@@ -36,7 +36,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const world = await getWorld(id)
 
   return {
-    title: `${world?.name || 'World Not Found'}`,
+    title: world?.name || '',
   }
 }
 
