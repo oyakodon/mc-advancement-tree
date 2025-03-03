@@ -14,7 +14,15 @@ type Props = PropsWithChildren<{
 const NavBar = ({ language, linkToTop = false, children }: Props) => {
   const Icon = () => {
     return (
-      <Image alt='' src={'/images/icon.svg'} width={48} height={48} decoding='async' priority />
+      <Image
+        alt=''
+        src={'/images/icon.svg'}
+        width={45}
+        height={45}
+        decoding='async'
+        priority
+        className='rounded-md'
+      />
     )
   }
 
