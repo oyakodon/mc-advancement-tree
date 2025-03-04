@@ -13,8 +13,8 @@ export default function WorldDetail({ world }: Props) {
         <span className='font-bold text-xl'>{world.name}</span>
 
         <div className='flex'>
-          <div className='border rounded-full bg-white px-2'>
-            <span className='bg-white font-mono text-xs text-black'>v{world.version}</span>
+          <div className='border rounded-full bg-white px-2 pb-1'>
+            <span className='bg-white font-mono text-xs text-black'>{'v' + world.version}</span>
           </div>
         </div>
       </div>
