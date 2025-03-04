@@ -29,7 +29,7 @@ export default function PlayerCard({ player: p, rank }: Props) {
         <PlayerIcon player={p} width={48} />
 
         <div className='flex flex-auto justify-between'>
-          <div className='flex flex-col'>
+          <div className='flex flex-col gap-1'>
             <span className='font-bold lg:text-md truncate dark:text-white'>{p.name}</span>
             <div className='flex items-center gap-1'>
               <div
