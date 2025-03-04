@@ -36,7 +36,7 @@ export default function ProgressDetail({ nodes, selected }: Props) {
   return (
     <div className='flex flex-col gap-2'>
       <div className='flex items-center justify-between'>
-        <p className='flex text-lg dark:text-gray-100'>{node.title}</p>
+        <p className='flex text-lg font-bold dark:text-gray-100'>{node.title}</p>
         <div className='p-2'>
           <AdvancementIcon node={node} done={node.done} bgSize={60} iconSize={36} />
         </div>
