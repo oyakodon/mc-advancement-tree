@@ -37,7 +37,7 @@ const orderByProgress = (players: readonly Player[]): (Player & { rank: number }
 
 interface Props {
   players: Player[]
-  world?: string
+  world: string
 }
 
 export default function PlayerRanking({ players, world }: Props) {

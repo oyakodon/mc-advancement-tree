@@ -1,15 +1,22 @@
 import type { Preview } from '@storybook/react'
-import { M_PLUS_Rounded_1c } from 'next/font/google'
+import { JetBrains_Mono, M_PLUS_Rounded_1c } from 'next/font/google'
 import React from 'react'
 
 import { ThemeProvider } from '@/components/theme/theme-provider'
 
 import '../src/app/globals.css'
 
-export const MPlusRounded1c = M_PLUS_Rounded_1c({
+const mplus = M_PLUS_Rounded_1c({
   subsets: ['latin'],
   weight: ['400', '700'],
-  variable: '--font-MPlusRounded1c',
+  variable: '--font-mplus',
+  display: 'swap',
+})
+
+const jetbrains = JetBrains_Mono({
+  subsets: ['latin'],
+  weight: ['400'],
+  variable: '--font-jetbrains',
   display: 'swap',
 })
 
@@ -25,7 +32,7 @@ const preview: Preview = {
 
   decorators: [
     (Story) => (
-      <div className={`${MPlusRounded1c.variable} --font-MPlusRounded1c font-sans`}>
+      <div className={`${mplus.variable} ${jetbrains.variable} font-sans`}>
         <ThemeProvider
           attribute='class'
           defaultTheme='system'

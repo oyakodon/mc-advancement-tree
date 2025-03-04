@@ -31,7 +31,7 @@ export default function ProgressBadge({ progress }: Props) {
   const bg = bgStyle(ratio)
 
   return (
-    <div className={`rounded-full ${bg} p-2 w-16`}>
+    <div className={`rounded-full ${bg} py-1.5 w-14`}>
       <div className='flex justify-center'>
         <span className='text-xs font-bold text-white tracking-tighter'>
           {(ratio * 100).toFixed(1) || 0} %

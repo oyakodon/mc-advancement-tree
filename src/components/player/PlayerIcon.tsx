@@ -21,7 +21,7 @@ export default function PlayerIcon({ player, width = 64, square = false }: Props
       onLoad={(event) => {
         event.currentTarget.setAttribute('data-loaded', 'true')
       }}
-      className={`${!square ? 'rounded-sm' : ''} data-[loaded=false]:animate-pulse data-[loaded=false]:bg-gray-600/10 dark:data-[loaded=false]:bg-gray-200/10`}
+      className={`${!square ? 'rounded-sm' : ''} shadow-md dark:shadow-gray-500 data-[loaded=false]:animate-pulse data-[loaded=false]:bg-gray-600/10 dark:data-[loaded=false]:bg-gray-200/10`}
     />
   )
 }
