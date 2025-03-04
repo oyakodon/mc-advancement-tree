@@ -35,7 +35,7 @@ export default function PlayerCard({ player: p, rank }: Props) {
               <div
                 className={`w-1 h-1 ${p.online ? 'bg-green-500' : 'bg-slate-600'} rounded-full`}
               />
-              <span className={`text-xs font-light ${p.online ? '' : 'text-slate-600'}`}>
+              <span className={`text-xs font-mono ${p.online ? '' : 'text-slate-600'}`}>
                 {p.online ? 'Online' : 'Offline'}
               </span>
             </div>
