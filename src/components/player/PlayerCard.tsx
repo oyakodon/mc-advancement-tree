@@ -25,7 +25,7 @@ export default function PlayerCard({ player: p, rank }: Props) {
 
   return (
     <div className='flex flex-col flex-wrap gap-2 max-w-sm p-4 bg-white border border-gray-200 dark:bg-gray-700 dark:border-gray-500 rounded-lg shadow-sm min-w-45 '>
-      <div className='flex gap-4'>
+      <div className='flex items-center gap-4'>
         <PlayerIcon player={p} width={48} />
 
         <div className='flex flex-auto justify-between'>
