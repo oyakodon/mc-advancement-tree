@@ -1,8 +1,7 @@
-import type { Preview } from '@storybook/react'
+import { withThemeByClassName } from '@storybook/addon-themes'
+import type { Preview, ReactRenderer } from '@storybook/react'
 import { JetBrains_Mono, M_PLUS_Rounded_1c } from 'next/font/google'
 import React from 'react'
-
-import { ThemeProvider } from '@/components/theme/theme-provider'
 
 import '../src/app/globals.css'
 
@@ -31,21 +30,21 @@ const preview: Preview = {
   },
 
   decorators: [
+    withThemeByClassName<ReactRenderer>({
+      themes: {
+        light: '',
+        dark: 'dark',
+      },
+      defaultTheme: 'light',
+    }),
     (Story) => (
       <div className={`${mplus.variable} ${jetbrains.variable} font-sans`}>
-        <ThemeProvider
-          attribute='class'
-          defaultTheme='system'
-          enableSystem
-          disableTransitionOnChange
-        >
-          <Story />
-        </ThemeProvider>
+        <Story />
       </div>
     ),
   ],
 
-  tags: ['autodocs', 'autodocs', 'autodocs'],
+  tags: ['autodocs'],
 }
 
 export default preview
