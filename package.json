@@ -37,7 +37,6 @@
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
-    "@chromatic-com/storybook": "^3.2.4",
     "@cloudflare/next-on-pages": "^1.13.8",
     "@cloudflare/workers-types": "^4.20250214.0",
     "@eslint/eslintrc": "^3.3.0",
