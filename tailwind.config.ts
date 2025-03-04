@@ -5,7 +5,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['var(--font-mplus)', 'sans-serif'],
+        sans: ['var(--font-mplus)'],
+        mono: ['var(--font-jetbrains)'],
       },
     },
   },
