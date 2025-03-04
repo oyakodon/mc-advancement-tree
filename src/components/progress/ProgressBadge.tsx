@@ -31,10 +31,12 @@ export default function ProgressBadge({ progress }: Props) {
   const bg = bgStyle(ratio)
 
   return (
-    <div className='w-15'>
-      <span className={`flex rounded-full ${bg} justify-center`}>
-        <span className='text-xs font-bold text-white p-2'>{(ratio * 100).toFixed(1) || 0} %</span>
+    <div className={`rounded-full ${bg} p-2 w-16`}>
+      <div className='flex justify-center'>
+        <span className='text-xs font-bold text-white tracking-tighter'>
+          {(ratio * 100).toFixed(1) || 0} %
       </span>
+      </div>
     </div>
   )
 }
