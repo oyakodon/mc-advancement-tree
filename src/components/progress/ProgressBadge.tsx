@@ -16,7 +16,7 @@ const palette = [
 
 const bgStyle = (percentage: number): string => {
   if (percentage >= 1) {
-    return 'bg-linear-to-r from-pink-500 to-yellow-500'
+    return 'bg-conic/decreasing from-violet-700 via-lime-300 to-violet-700'
   }
 
   return palette[Math.floor((percentage * 100) / 10)]
@@ -35,7 +35,7 @@ export default function ProgressBadge({ progress }: Props) {
       <div className='flex justify-center'>
         <span className='text-xs font-bold text-white tracking-tighter'>
           {(ratio * 100).toFixed(1) || 0} %
-      </span>
+        </span>
       </div>
     </div>
   )
