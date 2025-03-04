@@ -23,7 +23,7 @@ const CriteriaHeader = ({
 
   return (
     <div className='flex justify-between items-center w-full'>
-      <span className='flex'>条件: {total > 1 && metricsTitle[metrics]}</span>
+      <span className='flex'>{'条件' + (total > 1 ? `: ${metricsTitle[metrics]}` : '')}</span>
 
       <span className='flex border-2 rounded-sm p-1 bg-white'>
         {total > 1 && metrics == 'allof' ? (
