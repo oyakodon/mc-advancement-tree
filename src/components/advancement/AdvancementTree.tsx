@@ -24,11 +24,11 @@ export default function AdvancementTree({ nodes, categories, isDone, onSelected 
 
   return (
     <div className='flex flex-col h-full'>
-      <div className='border-x border-t rounded-t-lg'>
+      <div className='border-x border-t rounded-t-lg border-gray-400'>
         <AdvancementTab tabs={tabs} tabKey={tab} setTabKey={setTab} />
       </div>
 
-      <div className='flex-auto border rounded-b-lg'>
+      <div className='flex-auto border border-t-0 rounded-b-lg border-gray-400'>
         <AdvancementTreeView nodes={nodes} root={tab} isDone={isDone} onHover={onSelected} />
       </div>
     </div>
