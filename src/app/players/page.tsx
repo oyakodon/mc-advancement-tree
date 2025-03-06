@@ -8,6 +8,9 @@ import PlayerProgress from '@/components/progress/PlayerProgress'
 import ProgressDashboard from '@/components/progress/ProgressDashboard'
 import { client, options } from '@/lib/hono'
 
+export const runtime = 'edge'
+export const dynamic = 'force-dynamic'
+
 const getPlayer = async ({ p: id }: { p: string }) => {
   const res = await client.api.v1.players[':id'].$get(
     {
