@@ -1,3 +1,5 @@
+import { JSX } from 'react'
+
 // <https://www.svgrepo.com/svg/1831/medal>
 const MedalSvg = (props: JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>) => (
   <svg
