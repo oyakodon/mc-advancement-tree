@@ -5,28 +5,18 @@ import BreadcrumbNav from '@/components/navigation/BreadcrumbNav'
 import NavBar from '@/components/navigation/NavBar'
 import PlayerRanking from '@/components/player/PlayerRanking'
 import WorldDetail from '@/components/world/WorldDetail'
-import { client, options } from '@/lib/hono'
+import { client } from '@/lib/hono'
 
 export const runtime = 'edge'
 export const dynamic = 'force-dynamic'
 
 const getWorld = async (id: string) => {
-  const res = await client.api.v1.worlds[':id'].$get(
-    {
-      param: { id },
-    },
-    options,
-  )
+  const res = await client.api.v1.worlds[':id'].$get({ param: { id } })
   return res.ok ? await res.json() : null
 }
 
 const getPlayers = async (w: string) => {
-  const res = await client.api.v1.players.$get(
-    {
-      query: { w },
-    },
-    options,
-  )
+  const res = await client.api.v1.players.$get({ query: { w } })
   return res.ok ? (await res.json()).players : null
 }
 

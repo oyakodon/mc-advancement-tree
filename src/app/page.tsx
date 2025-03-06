@@ -2,13 +2,13 @@ import { Metadata } from 'next'
 import Image from 'next/image'
 
 import WorldList from '@/components/world/WorldList'
-import { client, options } from '@/lib/hono'
+import { client } from '@/lib/hono'
 
 export const runtime = 'edge'
 export const dynamic = 'force-dynamic'
 
 const getWorlds = async () => {
-  const res = await client.api.v1.worlds.$get({ options })
+  const res = await client.api.v1.worlds.$get()
   if (!res.ok) return null
 
   return (await res.json()).worlds.toSorted((a, b) => a.id.localeCompare(b.id))
