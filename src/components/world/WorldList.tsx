@@ -13,7 +13,7 @@ export default function WorldList({ worlds }: Props) {
     <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2'>
       {worlds.map((w) => (
         <div key={w.id} className='col-span-1'>
-          <WorldCard world={w} href={(w: World) => `/worlds/${w.id}`} detail='version' />
+          <WorldCard world={w} detail='version' />
         </div>
       ))}
     </div>

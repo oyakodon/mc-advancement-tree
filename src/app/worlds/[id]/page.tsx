@@ -7,6 +7,9 @@ import PlayerRanking from '@/components/player/PlayerRanking'
 import WorldDetail from '@/components/world/WorldDetail'
 import { client, options } from '@/lib/hono'
 
+export const runtime = 'edge'
+export const dynamic = 'force-dynamic'
+
 const getWorld = async (id: string) => {
   const res = await client.api.v1.worlds[':id'].$get(
     {
