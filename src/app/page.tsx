@@ -1,6 +1,7 @@
 import { Metadata } from 'next'
 import Image from 'next/image'
 
+import Alert from '@/components/Alert'
 import WorldList from '@/components/world/WorldList'
 import { client } from '@/lib/hono'
 
@@ -8,8 +9,11 @@ export const runtime = 'edge'
 export const dynamic = 'force-dynamic'
 
 const getWorlds = async () => {
-  const res = await client.api.v1.worlds.$get()
-  if (!res.ok) return null
+  const res = await client.api.v1.worlds.$get().catch((err) => {
+    console.error(err)
+    return null
+  })
+  if (!res?.ok) return null
 
   return (await res.json()).worlds.toSorted((a, b) => a.id.localeCompare(b.id))
 }
@@ -42,7 +46,16 @@ export default async function Home() {
         </div>
       </section>
 
-      <div className='container p-6 sm:mx-auto'>{worlds && <WorldList worlds={worlds} />}</div>
+      <div className='container p-6 sm:mx-auto'>
+        {(worlds && <WorldList worlds={worlds} />) || (
+          <Alert
+            title='Error'
+            message='ワールド一覧の取得時にエラーが発生しました。 / An error occurred while retrieving Worlds.'
+            type='error'
+            hideLink
+          />
+        )}
+      </div>
     </main>
   )
 }
