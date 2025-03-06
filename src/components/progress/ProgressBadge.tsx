@@ -16,7 +16,7 @@ const palette = [
 
 const bgStyle = (percentage: number): string => {
   if (percentage >= 1) {
-    return 'bg-conic/decreasing from-violet-700 via-lime-300 to-violet-700'
+    return 'bg-linear-to-r/increasing from-violet-700 via-lime-300 to-violet-700'
   }
 
   return palette[Math.floor((percentage * 100) / 10)]
