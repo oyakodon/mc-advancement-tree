@@ -1,0 +1,10 @@
+[
+  {
+    "key": "seed:tree:1.21.4",
+    "value": "{\"categories\":[{\"root\": \"minecraft:story/root\"}],\"nodes\":[{\"key\":\"minecraft:story/root\",\"type\":\"task\",\"hidden\":false,\"metrics\":\"allof\",\"criteria\":[{\"id\":\"crafting_table\"}],\"iconUrl\":\"https://dendro-assets.oykdn.work/block/32/grass_block.png\",\"children\":[\"minecraft:story/mine_stone\"]}]}"
+  },
+  {
+    "key": "seed:tree:fallback",
+    "value": "{\"version\":\"1.21.4\"}"
+  }
+]
