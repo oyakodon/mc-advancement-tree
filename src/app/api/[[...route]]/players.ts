@@ -17,14 +17,14 @@ const getPlayer = async (
 const getPlayerWithProgress = async (
   c: { env: CloudflareEnv; ctx: ExecutionContext },
   world: World,
-  id: string,
+  playerId: string,
 ): Promise<Player | null> => {
-  const profile = await getPlayer(c, id)
+  const profile = await getPlayer(c, playerId)
   if (!profile) {
     return null
   }
 
-  const record = await c.env.KV.get<ProgressRecord>(Keys.record(world.id, id), {
+  const record = await c.env.KV.get<ProgressRecord>(Keys.record(world.id, playerId), {
     type: 'json',
   })
   if (!record) {
@@ -33,7 +33,7 @@ const getPlayerWithProgress = async (
 
   return {
     ...profile,
-    online: world.players[id],
+    online: world.players[playerId],
     progress: record.progress,
   }
 }
