@@ -1,15 +1,13 @@
 import { getRequestContext } from '@cloudflare/next-on-pages'
 import { Hono } from 'hono'
-import { cache } from 'hono/cache'
 
+import { apiCache } from './cache'
 import { getOrFetch } from './store'
 
 import { World } from '@/model/World'
 
-const WORLDS_TTL = 60 * 60 // FIXME: process.env
+const WORLDS_TTL = 60 * 60
 const WORLDS_CACHE_KEY = 'cache:worlds'
-
-const CACHE_CONTROL_MAX_AGE = 60 // FIXME: process.env
 
 // worldのidをKVから取得
 const getWorldIds = async (c: { env: CloudflareEnv; ctx: ExecutionContext }) =>
@@ -27,14 +25,7 @@ const getWorldIds = async (c: { env: CloudflareEnv; ctx: ExecutionContext }) =>
   )) ?? []
 
 export const app = new Hono()
-  .get(
-    '/',
-    cache({
-      cacheName: 'dendrogram',
-      cacheControl: `max-age=${CACHE_CONTROL_MAX_AGE}`,
-      wait: true,
-    }),
-    async (c) => {
+  .get('/', apiCache(), async (c) => {
       const reqCtx = getRequestContext()
       const { KV } = reqCtx.env
 
@@ -54,16 +45,8 @@ export const app = new Hono()
       return c.json({
         worlds: worlds,
       })
-    },
-  )
-  .get(
-    '/:id',
-    cache({
-      cacheName: 'dendrogram',
-      cacheControl: `max-age=${CACHE_CONTROL_MAX_AGE}`,
-      wait: true,
-    }),
-    async (c) => {
+  })
+  .get('/:id', apiCache(), async (c) => {
       const reqCtx = getRequestContext()
       const { id } = c.req.param()
       const { KV } = reqCtx.env
@@ -74,5 +57,4 @@ export const app = new Hono()
       }
 
       return c.json(world)
-    },
-  )
+  })
