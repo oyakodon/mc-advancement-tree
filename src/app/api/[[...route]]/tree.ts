@@ -1,8 +1,9 @@
 import { getRequestContext } from '@cloudflare/next-on-pages'
 import { zValidator } from '@hono/zod-validator'
 import { Hono } from 'hono'
-import { cache } from 'hono/cache'
 import { z } from 'zod'
+
+import { apiCache } from './cache'
 
 import { IconNode } from '@/model/IconNode'
 import { LocalizedContent, Mappings } from '@/model/Localized'
@@ -10,8 +11,6 @@ import { ProgressEntry, ProgressRecord } from '@/model/Progress'
 import { ProgressNode } from '@/model/ProgressNode'
 import { AdvancementTree, ProgressTree } from '@/model/Tree'
 import { World } from '@/model/World'
-
-const CACHE_CONTROL_MAX_AGE = 60 // FIXME: process.env
 
 const DEFAULT_LANG = 'en'
 
@@ -47,11 +46,7 @@ const zeroProgress = (node: IconNode): ProgressEntry => {
 
 export const app = new Hono().get(
   '/',
-  cache({
-    cacheName: 'dendrogram',
-    cacheControl: `max-age=${CACHE_CONTROL_MAX_AGE}`,
-    wait: true,
-  }),
+  apiCache(),
   zValidator(
     'query',
     z.object({
