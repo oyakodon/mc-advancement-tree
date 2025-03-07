@@ -2,6 +2,7 @@ import { getRequestContext } from '@cloudflare/next-on-pages'
 import { Hono } from 'hono'
 
 import { apiCache } from './cache'
+import { Keys } from './store'
 
 import { Player, PlayerProfile } from '@/model/Player'
 import { ProgressRecord } from '@/model/Progress'
@@ -11,7 +12,7 @@ const getPlayer = async (
   c: { env: CloudflareEnv; ctx: ExecutionContext },
   id: string,
 ): Promise<PlayerProfile | null> =>
-  await c.env.KV.get<PlayerProfile>(`player:${id}`, { type: 'json' })
+  await c.env.KV.get<PlayerProfile>(Keys.player(id), { type: 'json' })
 
 const getPlayerWithProgress = async (
   c: { env: CloudflareEnv; ctx: ExecutionContext },
@@ -23,8 +24,9 @@ const getPlayerWithProgress = async (
     return null
   }
 
-  const key = `record:${world.id}:${id}`
-  const record = await c.env.KV.get<ProgressRecord>(key, { type: 'json' })
+  const record = await c.env.KV.get<ProgressRecord>(Keys.record(world.id, id), {
+    type: 'json',
+  })
   if (!record) {
     return null
   }
@@ -43,7 +45,7 @@ export const app = new Hono()
     const reqCtx = getRequestContext()
     const { KV } = reqCtx.env
 
-    const world = await KV.get<World>(`world:${worldId}`, { type: 'json' })
+    const world = await KV.get<World>(Keys.world(worldId), { type: 'json' })
     if (!world) {
       return c.text('world not found', 404)
     }
