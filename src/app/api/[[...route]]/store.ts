@@ -1,3 +1,26 @@
+export class Keys {
+  static world(id: string = '') {
+    return `world:${id}`
+  }
+
+  static player(id: string) {
+    return `player:${id}`
+  }
+
+  static record(w: string, p: string) {
+    return `record:${w}:${p}`
+  }
+
+  static seed(version: string, lang: string): { treeKey: string; mappingKey: string } {
+    return {
+      treeKey: `seed:tree:${version}`,
+      mappingKey: `seed:lang:${version}:${lang}`,
+    }
+  }
+
+  static seedFallback = 'seed:tree:fallback'
+}
+
 export type KVMetadata = {
   updated: string
 }
