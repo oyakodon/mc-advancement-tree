@@ -41,6 +41,9 @@ const getPlayerWithProgress = async (
 export const app = new Hono()
   .get('/', apiCache(), async (c) => {
     const worldId = c.req.query('w')
+    if (!worldId) {
+      return c.text('invalid query', 400)
+    }
 
     const reqCtx = getRequestContext()
     const { KV } = reqCtx.env
