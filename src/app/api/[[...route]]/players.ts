@@ -2,45 +2,18 @@ import { getRequestContext } from '@cloudflare/next-on-pages'
 import { Hono } from 'hono'
 import { cache } from 'hono/cache'
 
-import { getOrFetch } from './store'
-
 import { Player, PlayerProfile } from '@/model/Player'
 import { ProgressRecord } from '@/model/Progress'
 import { World } from '@/model/World'
 
-const PLAYER_CACHE_TTL = 24 * 60 * 60 // FIXME: process.env
-const PREFIX_PLAYER_CACHE = 'cache:player'
-
 const CACHE_CONTROL_MAX_AGE = 60 // FIXME: process.env
 const PLAYER_CACHE_CONTROL_MAX_AGE = 60 * 60 // FIXME: process.env
-
-type MinecraftProfile = {
-  id: string
-  name: string
-}
-
-const fetchPlayerProfile = async (id: string) => {
-  const res = await fetch(`https://api.minecraftservices.com/minecraft/profile/lookup/${id}`)
-  if (!res.ok) {
-    return null
-  }
-  const profile = (await res.json()) as MinecraftProfile
-  return {
-    id: id,
-    name: profile.name,
-  }
-}
 
 const getPlayer = async (
   c: { env: CloudflareEnv; ctx: ExecutionContext },
   id: string,
 ): Promise<PlayerProfile | null> =>
-  getOrFetch<MinecraftProfile>(
-    c,
-    `${PREFIX_PLAYER_CACHE}:${id}`,
-    () => fetchPlayerProfile(id),
-    PLAYER_CACHE_TTL,
-  )
+  await c.env.KV.get<PlayerProfile>(`player:${id}`, { type: 'json' })
 
 const getPlayerWithProgress = async (
   c: { env: CloudflareEnv; ctx: ExecutionContext },
