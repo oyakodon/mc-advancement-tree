@@ -2,7 +2,7 @@ import { getRequestContext } from '@cloudflare/next-on-pages'
 import { Hono } from 'hono'
 
 import { apiCache } from './cache'
-import { getOrFetch } from './store'
+import { getOrFetch, Keys } from './store'
 
 import { World } from '@/model/World'
 
@@ -17,7 +17,7 @@ const getWorldIds = async (c: { env: CloudflareEnv; ctx: ExecutionContext }) =>
     async () => {
       // KVに存在しなければ、list
       const result = await c.env.KV.list({
-        prefix: 'world:',
+        prefix: Keys.world(),
       })
       return result.keys.map((item) => item.name)
     },
@@ -26,35 +26,35 @@ const getWorldIds = async (c: { env: CloudflareEnv; ctx: ExecutionContext }) =>
 
 export const app = new Hono()
   .get('/', apiCache(), async (c) => {
-      const reqCtx = getRequestContext()
-      const { KV } = reqCtx.env
+    const reqCtx = getRequestContext()
+    const { KV } = reqCtx.env
 
-      // world情報を取得
-      const worldIds = await getWorldIds(reqCtx)
+    // world情報を取得
+    const worldIds = await getWorldIds(reqCtx)
 
-      const worlds: World[] = []
-      for (const id of worldIds) {
-        const world = await KV.get<World>(id, { type: 'json' })
-        if (world) {
-          worlds.push(world)
-        }
+    const worlds: World[] = []
+    for (const id of worldIds) {
+      const world = await KV.get<World>(id, { type: 'json' })
+      if (world) {
+        worlds.push(world)
       }
+    }
 
-      worlds.sort((a, b) => (b.active ? 1 : 0) - (a.active ? 1 : 0) || a.name.localeCompare(b.name))
+    worlds.sort((a, b) => (b.active ? 1 : 0) - (a.active ? 1 : 0) || a.name.localeCompare(b.name))
 
-      return c.json({
-        worlds: worlds,
-      })
+    return c.json({
+      worlds: worlds,
+    })
   })
   .get('/:id', apiCache(), async (c) => {
-      const reqCtx = getRequestContext()
-      const { id } = c.req.param()
-      const { KV } = reqCtx.env
+    const reqCtx = getRequestContext()
+    const { id } = c.req.param()
+    const { KV } = reqCtx.env
 
-      const world = await KV.get<World>(`world:${id}`, { type: 'json' })
-      if (!world) {
-        return c.text('world not found', 404)
-      }
+    const world = await KV.get<World>(Keys.world(id), { type: 'json' })
+    if (!world) {
+      return c.text('world not found', 404)
+    }
 
-      return c.json(world)
+    return c.json(world)
   })

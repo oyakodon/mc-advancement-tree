@@ -4,6 +4,7 @@ import { Hono } from 'hono'
 import { z } from 'zod'
 
 import { apiCache } from './cache'
+import { Keys } from './store'
 
 import { IconNode } from '@/model/IconNode'
 import { LocalizedContent, Mappings } from '@/model/Localized'
@@ -22,8 +23,9 @@ const getTree = async (
   version: string,
   lang: string,
 ): Promise<{ tree: AdvancementTree; mappings: Record<string, LocalizedContent> } | null> => {
-  const tree = await c.env.KV.get<AdvancementTree>(`seed:tree:${version}`, { type: 'json' })
-  const mappings = await c.env.KV.get<Mappings>(`seed:lang:${version}:${lang}`, { type: 'json' })
+  const { treeKey, mappingKey } = Keys.seed(version, lang)
+  const tree = await c.env.KV.get<AdvancementTree>(treeKey, { type: 'json' })
+  const mappings = await c.env.KV.get<Mappings>(mappingKey, { type: 'json' })
 
   if (!tree || !mappings) {
     return null
@@ -65,13 +67,13 @@ export const app = new Hono().get(
     }
 
     // バージョン情報が知りたいのでWorldを取得
-    const world = await KV.get<World>(`world:${worldId}`, { type: 'json' })
+    const world = await KV.get<World>(Keys.world(worldId), { type: 'json' })
     if (!world) {
       return c.text('world not found', 404)
     }
 
     // プレイヤーの進捗レコードを取得
-    const record = await KV.get<ProgressRecord>(`record:${worldId}:${playerId}`, { type: 'json' })
+    const record = await KV.get<ProgressRecord>(Keys.record(worldId, playerId), { type: 'json' })
     if (!record) {
       return c.text('record not found', 404)
     }
@@ -80,7 +82,7 @@ export const app = new Hono().get(
     let result = await getTree(reqCtx, world.version, lang)
     if (!result) {
       // 該当するバージョンが存在しなければ、fallbackバージョンのものを採用
-      const fallback = await KV.get<{ version: string }>('seed:tree:fallback', { type: 'json' })
+      const fallback = await KV.get<{ version: string }>(Keys.seedFallback, { type: 'json' })
       if (fallback) {
         result = await getTree(reqCtx, fallback.version, lang)
       }
