@@ -1,0 +1,9 @@
+[
+  {
+    "key": "record:2ae33d8d-06a6-46e4-87a4-3feed457efd0:f320580d-e221-4254-9fdd-7b68d455d038",
+    "value": "{\"records\":[{\"key\":\"minecraft:story/root\",\"done\":true,\"criteria\":[{\"id\":\"crafting_table\",\"done\":\"2025-02-11T14:00:00Z\"}],\"progress\":{\"done\":1,\"total\":1}}],\"progress\":{\"done\":1,\"total\":1, \"achieved\": \"2025-02-13T03:34:56Z\"}, \"categories\": [{\"root\": \"minecraft:story/root\", \"progress\": {\"done\": 1, \"total\": 1, \"achieved\": \"2025-02-13T03:34:56Z\"}}]}",
+    "metadata": {
+      "updated": "2025-02-13T03:34:56Z"
+    }
+  }
+]
