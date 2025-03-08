@@ -6,7 +6,7 @@ export default function NotFound() {
     <main className='flex flex-col h-screen bg-slate-50 dark:bg-slate-800 '>
       <title>Advancement Not Found</title>
 
-      <NavBar language linkToTop />
+      <NavBar language />
 
       <div className='lg:container lg:mx-auto p-2 flex flex-auto'>
         <div className='flex flex-col flex-auto'>

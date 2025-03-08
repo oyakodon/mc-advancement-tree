@@ -14,7 +14,7 @@ export default function Error({ error }: { error: Error & { digest?: string } })
     <main className='flex flex-col h-screen bg-slate-50 dark:bg-slate-800 '>
       <title>Error</title>
 
-      <NavBar />
+      <NavBar hideLink />
 
       <div className='lg:container lg:mx-auto p-2 flex flex-auto'>
         <div className='flex flex-col flex-auto'>

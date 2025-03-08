@@ -6,7 +6,7 @@ export default function NotFound() {
     <main className='flex flex-col h-screen bg-slate-50 dark:bg-slate-800 '>
       <title>404 Not Found</title>
 
-      <NavBar linkToTop />
+      <NavBar />
 
       <div className='lg:container lg:mx-auto p-2 flex flex-auto'>
         <div className='flex flex-col flex-auto'>
