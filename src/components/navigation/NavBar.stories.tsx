@@ -28,9 +28,9 @@ export const UseLanguage: Story = {
   },
 }
 
-export const UseLinkToTop: Story = {
+export const HideLink: Story = {
   args: {
-    linkToTop: true,
+    hideLink: true,
   },
 }
 

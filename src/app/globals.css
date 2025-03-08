@@ -47,6 +47,9 @@
   --chart-4: hsl(43 74% 66%);
   --chart-5: hsl(27 87% 67%);
   --radius: 0.6rem;
+  --gold: hsl(50, 100%, 50%);
+  --silver: hsl(0, 0%, 75%);
+  --bronze: hsl(29 60% 50%);
 }
 
 .dark {
@@ -105,9 +108,9 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
-  --color-gold: hsl(50, 100%, 50%);
-  --color-silver: hsl(0, 0%, 75%);
-  --color-bronze: hsl(29 60% 50%);
+  --color-gold: var(--gold);
+  --color-silver: var(--silver);
+  --color-bronze: var(--bronze);
 }
 
 html,

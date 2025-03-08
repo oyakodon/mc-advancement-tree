@@ -8,10 +8,10 @@ import { LanguagePicker } from './LanguagePicker'
 
 type Props = PropsWithChildren<{
   language?: boolean
-  linkToTop?: boolean
+  hideLink?: boolean
 }>
 
-const NavBar = ({ language, linkToTop = false, children }: Props) => {
+const NavBar = ({ language, hideLink = false, children }: Props) => {
   const Icon = () => {
     return (
       <Image
@@ -28,7 +28,7 @@ const NavBar = ({ language, linkToTop = false, children }: Props) => {
 
   return (
     <nav className='flex items-center justify-between bg-white dark:bg-slate-700 border border-gray-300 dark:border-slate-900 py-1 px-2'>
-      {(linkToTop && (
+      {(!hideLink && (
         <Link href='/'>
           <Icon />
         </Link>
