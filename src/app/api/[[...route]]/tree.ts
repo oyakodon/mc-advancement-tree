@@ -4,16 +4,15 @@ import { Hono } from 'hono'
 import { z } from 'zod'
 
 import { apiCache } from './cache'
+import { buildTree } from './services/tree'
 import { Keys } from './store'
 
-import { IconNode } from '@/model/IconNode'
-import { LocalizedContent, Mappings } from '@/model/Localized'
-import { ProgressEntry, ProgressRecord } from '@/model/Progress'
-import { ProgressNode } from '@/model/ProgressNode'
-import { AdvancementTree, ProgressTree } from '@/model/Tree'
+import { Mappings } from '@/model/Localized'
+import { ProgressRecord } from '@/model/Progress'
+import { AdvancementTree } from '@/model/Tree'
 import { World } from '@/model/World'
 
-const DEFAULT_LANG = 'en'
+const DEFAULT_LANG = 'en_us'
 
 // 進捗ツリーと翻訳を取得・いずれかが存在しなければnull
 const getTree = async (
@@ -22,7 +21,7 @@ const getTree = async (
   },
   version: string,
   lang: string,
-): Promise<{ tree: AdvancementTree; mappings: Record<string, LocalizedContent> } | null> => {
+): Promise<{ tree: AdvancementTree; mappings: Mappings } | null> => {
   const { treeKey, mappingKey } = Keys.seed(version, lang)
   const tree = await c.env.KV.get<AdvancementTree>(treeKey, { type: 'json' })
   const mappings = await c.env.KV.get<Mappings>(mappingKey, { type: 'json' })
@@ -31,19 +30,7 @@ const getTree = async (
     return null
   }
 
-  return { tree, mappings: mappings.mappings }
-}
-
-// 進捗度0の進捗レコードを生成
-const zeroProgress = (node: IconNode): ProgressEntry => {
-  return {
-    ...node,
-    done: false,
-    progress: {
-      done: 0,
-      total: node.metrics == 'allof' ? node.criteria.length : 1,
-    },
-  }
+  return { tree, mappings }
 }
 
 export const app = new Hono().get(
@@ -79,46 +66,20 @@ export const app = new Hono().get(
     }
 
     // 進捗ツリーと翻訳を取得
-    let result = await getTree(reqCtx, world.version, lang)
-    if (!result) {
+    let seed = await getTree(reqCtx, world.version, lang)
+    if (!seed) {
       // 該当するバージョンが存在しなければ、fallbackバージョンのものを採用
       const fallback = await KV.get<{ version: string }>(Keys.seedFallback, { type: 'json' })
       if (fallback) {
-        result = await getTree(reqCtx, fallback.version, lang)
+        seed = await getTree(reqCtx, fallback.version, lang)
       }
     }
-    if (!result) {
+    if (!seed) {
       console.error(`seed not found: world=v${world.version}, lang=${lang}`)
       return c.text('internal server error: seed not found', 500)
     }
 
     // 進捗ツリー・翻訳・進捗レコードを合成してレスポンスを生成
-    const { tree, mappings } = result
-    const nodes: ProgressNode[] = []
-
-    // 進捗ツリーの各nodeに対応する進捗レコードがあれば、合成。なければ、done: 0の進捗レコードを返す
-    for (const node of tree.nodes) {
-      const r = record.records.find((e) => e.key == node.key) || zeroProgress(node)
-      const p: ProgressNode = {
-        ...node,
-        ...r,
-        ...mappings[node.key],
-      }
-
-      nodes.push(p)
-    }
-
-    const categories = record.categories.map((c) => ({
-      ...c,
-      ...mappings[c.root],
-    }))
-
-    // TODO: hiddenの場合の処理, seed追加して各パターンチェック, テスト実装
-
-    return c.json({
-      categories,
-      nodes,
-      progress: record.progress,
-    } satisfies ProgressTree)
+    return c.json(buildTree(seed.tree, seed.mappings, record))
   },
 )
