@@ -6,20 +6,28 @@ import BreadcrumbNav from '@/components/navigation/BreadcrumbNav'
 import NavBar from '@/components/navigation/NavBar'
 import PlayerProgress from '@/components/progress/PlayerProgress'
 import ProgressDashboard from '@/components/progress/ProgressDashboard'
-import { client } from '@/lib/hono'
+import { client, options } from '@/lib/hono'
 
 export const runtime = 'edge'
 export const dynamic = 'force-dynamic'
 
 const getPlayer = async ({ p: id }: { p: string }) => {
-  const res = await client.api.v1.players[':id'].$get({ param: { id } })
+  const res = await client.api.v1.players[':id'].$get(
+    {
+      param: { id },
+    },
+    options,
+  )
   return res.ok ? await res.json() : null
 }
 
 const getTree = async ({ w, p, lang }: { w: string; p: string; lang?: string }) => {
-  const res = await client.api.v1.tree.$get({
-    query: { w, p, lang: lang || 'ja_jp' },
-  })
+  const res = await client.api.v1.tree.$get(
+    {
+      query: { w, p, lang: lang || 'ja_jp' },
+    },
+    options,
+  )
   return res.ok ? await res.json() : null
 }
 
