@@ -23,7 +23,7 @@ const detailContent = (w: World, detail: Details) => {
 
 export default function WorldCard({ world, detail }: Props) {
   const players = Object.entries(world.players)
-  const online = players.filter((_, status) => status).length
+  const online = players.filter(([, status]) => status).length
 
   return (
     <div className='flex flex-col flex-wrap max-w-sm p-4 bg-white border border-gray-200 dark:bg-gray-700 dark:border-gray-500 rounded-lg shadow-sm min-w-45 '>
