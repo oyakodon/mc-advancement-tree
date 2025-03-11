@@ -40,7 +40,7 @@ export const buildTree = (
     ...mappings.mappings[c.root],
   }))
 
-  // TODO: hiddenの場合の処理, テスト実装
+  // TODO: hiddenの場合の処理
 
   return {
     categories,
