@@ -16,9 +16,7 @@ const DEFAULT_LANG = 'en_us'
 
 // 進捗ツリーと翻訳を取得・いずれかが存在しなければnull
 const getTree = async (
-  c: {
-    env: CloudflareEnv
-  },
+  c: { env: CloudflareEnv },
   version: string,
   lang: string,
 ): Promise<{ tree: AdvancementTree; mappings: Mappings } | null> => {
@@ -26,11 +24,7 @@ const getTree = async (
   const tree = await c.env.KV.get<AdvancementTree>(treeKey, { type: 'json' })
   const mappings = await c.env.KV.get<Mappings>(mappingKey, { type: 'json' })
 
-  if (!tree || !mappings) {
-    return null
-  }
-
-  return { tree, mappings }
+  return tree && mappings ? { tree, mappings } : null
 }
 
 export const app = new Hono().get(
@@ -66,16 +60,11 @@ export const app = new Hono().get(
     }
 
     // 進捗ツリーと翻訳を取得
-    let seed = await getTree(reqCtx, world.version, lang)
+    const seed =
+      (await getTree(reqCtx, world.version, lang)) ??
+      (await getTree(reqCtx, Keys.seedFallback, lang))
     if (!seed) {
-      // 該当するバージョンが存在しなければ、fallbackバージョンのものを採用
-      const fallback = await KV.get<{ version: string }>(Keys.seedFallback, { type: 'json' })
-      if (fallback) {
-        seed = await getTree(reqCtx, fallback.version, lang)
-      }
-    }
-    if (!seed) {
-      console.error(`seed not found: world=v${world.version}, lang=${lang}`)
+      console.error(`seed not found and fallback failed: v${world.version}, lang=${lang}`)
       return c.text('internal server error: seed not found', 500)
     }
 
