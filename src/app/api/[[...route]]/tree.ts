@@ -12,7 +12,7 @@ import { ProgressRecord } from '@/model/Progress'
 import { AdvancementTree } from '@/model/Tree'
 import { World } from '@/model/World'
 
-const DEFAULT_LANG = 'en_us'
+const DEFAULT_LANG = process.env.DEFAULT_LANG || 'en_us'
 
 // 進捗ツリーと翻訳を取得・いずれかが存在しなければnull
 const getTree = async (
