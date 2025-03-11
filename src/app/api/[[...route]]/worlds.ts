@@ -40,10 +40,12 @@ export const app = new Hono()
       }
     }
 
-    worlds.sort((a, b) => (b.active ? 1 : 0) - (a.active ? 1 : 0) || a.name.localeCompare(b.name))
+    const sorted = worlds.toSorted(
+      (a, b) => (b.active ? 1 : 0) - (a.active ? 1 : 0) || a.name.localeCompare(b.name),
+    )
 
     return c.json({
-      worlds: worlds,
+      worlds: sorted,
     })
   })
   .get('/:id', apiCache(), async (c) => {
