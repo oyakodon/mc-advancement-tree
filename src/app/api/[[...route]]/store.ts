@@ -18,7 +18,7 @@ export class Keys {
     }
   }
 
-  static seedFallback = 'seed:tree:fallback'
+  static seedFallback = 'fallback'
 }
 
 export type KVMetadata = {

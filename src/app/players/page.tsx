@@ -24,7 +24,7 @@ const getPlayer = async ({ p: id }: { p: string }) => {
 const getTree = async ({ w, p, lang }: { w: string; p: string; lang?: string }) => {
   const res = await client.api.v1.tree.$get(
     {
-      query: { w, p, lang: lang || 'ja_jp' },
+      query: { w, p, lang },
     },
     options,
   )
