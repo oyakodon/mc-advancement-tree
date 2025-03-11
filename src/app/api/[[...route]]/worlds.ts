@@ -26,6 +26,8 @@ const getWorldIds = async (c: { env: CloudflareEnv; ctx: ExecutionContext }) =>
 
 export const app = new Hono()
   .get('/', apiCache(), async (c) => {
+    const active = (c.req.query('active') || 'true') === 'true'
+
     const reqCtx = getRequestContext()
     const { KV } = reqCtx.env
 
@@ -35,7 +37,7 @@ export const app = new Hono()
     const worlds: World[] = []
     for (const id of worldIds) {
       const world = await KV.get<World>(id, { type: 'json' })
-      if (world) {
+      if (world && world.active === active) {
         worlds.push(world)
       }
     }
