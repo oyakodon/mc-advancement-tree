@@ -26,6 +26,8 @@ const getWorldIds = async (c: { env: CloudflareEnv; ctx: ExecutionContext }) =>
 
 export const app = new Hono()
   .get('/', apiCache(), async (c) => {
+    const active = (c.req.query('active') || 'true') === 'true'
+
     const reqCtx = getRequestContext()
     const { KV } = reqCtx.env
 
@@ -35,15 +37,15 @@ export const app = new Hono()
     const worlds: World[] = []
     for (const id of worldIds) {
       const world = await KV.get<World>(id, { type: 'json' })
-      if (world) {
+      if (world && world.active === active) {
         worlds.push(world)
       }
     }
 
-    worlds.sort((a, b) => (b.active ? 1 : 0) - (a.active ? 1 : 0) || a.name.localeCompare(b.name))
+    const sorted = worlds.toSorted((a, b) => a.name.localeCompare(b.name))
 
     return c.json({
-      worlds: worlds,
+      worlds: sorted,
     })
   })
   .get('/:id', apiCache(), async (c) => {
