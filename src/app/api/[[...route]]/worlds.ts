@@ -42,9 +42,7 @@ export const app = new Hono()
       }
     }
 
-    const sorted = worlds.toSorted(
-      (a, b) => (b.active ? 1 : 0) - (a.active ? 1 : 0) || a.name.localeCompare(b.name),
-    )
+    const sorted = worlds.toSorted((a, b) => a.name.localeCompare(b.name))
 
     return c.json({
       worlds: sorted,
