@@ -1,1 +1,5 @@
-["seed:lang:1.21.4:ja_jp"]
+[
+  "seed:lang:1.21.4:ja_jp",
+  "seed:lang:1.21.4:en_us",
+  "seed:lang:fallback:en_us"
+]

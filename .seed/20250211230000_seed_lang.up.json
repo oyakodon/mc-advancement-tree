@@ -2,5 +2,13 @@
   {
     "key": "seed:lang:1.21.4:ja_jp",
     "value": "{\"mappings\":{\"minecraft:story/root\":{\"title\":\"Minecraft\",\"description\":\"ゲームのストーリーと核心\"}}}"
+  },
+  {
+    "key": "seed:lang:1.21.4:en_us",
+    "value": "{\"mappings\":{\"minecraft:story/root\":{\"title\":\"Minecraft\",\"description\":\"The heart and story of the game\"}}}"
+  },
+  {
+    "key": "seed:lang:fallback:en_us",
+    "value": "{\"mappings\":{\"minecraft:story/root\":{\"title\":\"Minecraft\",\"description\":\"The heart and story of the game\"}}}"
   }
 ]
