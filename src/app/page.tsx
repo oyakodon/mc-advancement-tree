@@ -13,9 +13,7 @@ const getWorlds = async () => {
     console.error(err)
     return null
   })
-  if (!res?.ok) return null
-
-  return (await res.json()).worlds.toSorted((a, b) => a.id.localeCompare(b.id))
+  return res?.ok ? (await res.json()).worlds : null
 }
 
 export const metadata: Metadata = {
