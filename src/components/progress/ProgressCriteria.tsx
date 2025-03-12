@@ -6,7 +6,7 @@ import { ProgressNode } from '@/model/ProgressNode'
 
 const metricsTitle = {
   allof: '(全て)',
-  oneof: '(1つ以上)',
+  anyof: '(1つ以上)',
 }
 
 const CriteriaHeader = ({
@@ -15,7 +15,7 @@ const CriteriaHeader = ({
   completed,
 }: {
   progress: Progress
-  metrics: 'allof' | 'oneof'
+  metrics: 'allof' | 'anyof'
   completed: boolean
 }) => {
   const { done, total } = progress
