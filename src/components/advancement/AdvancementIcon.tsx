@@ -3,8 +3,6 @@ import React, { MouseEventHandler, ReactEventHandler } from 'react'
 
 import { LocalizedNode } from '@/model/ProgressNode'
 
-const defaultIconSize = 32
-
 interface Props {
   bgSize: number
   iconSize: number
@@ -36,30 +34,23 @@ export default function AdvancementIcon({
       onMouseOver={onMouseOver}
       title={node.title ?? ''}
     >
-      <Image
-        alt=''
-        src={bgUrl}
-        width={bgSize}
-        height={bgSize}
-        decoding='async'
-        onLoad={onIconLoad}
-      />
+      <Image alt='' src={bgUrl} width={bgSize} height={bgSize} decoding='async' />
 
       <div
         style={{
           position: 'absolute',
-          left: `${(bgSize - defaultIconSize) / 2}px`,
-          top: `${(bgSize - defaultIconSize) / 2}px`,
+          left: `${(bgSize - iconSize) / 2}px`,
+          top: `${(bgSize - iconSize) / 2}px`,
           lineHeight: 0,
         }}
       >
-        <div
-          style={{
-            width: defaultIconSize,
-            height: defaultIconSize,
-            transform: `scale(${(iconSize / defaultIconSize) * 100}%)`,
-            backgroundImage: `url("${node.iconUrl}")`,
-          }}
+        <Image
+          alt=''
+          src={node.iconUrl}
+          width={iconSize}
+          height={iconSize}
+          decoding='async'
+          onLoad={onIconLoad}
         />
       </div>
     </div>
