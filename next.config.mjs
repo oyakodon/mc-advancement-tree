@@ -11,6 +11,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'crafatar.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'dendro-assets.oykdn.work',
+      },
     ],
   },
 }
