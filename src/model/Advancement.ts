@@ -7,6 +7,6 @@ export type Advancement = {
   key: string
   type: 'task' | 'challenge' | 'goal'
   hidden: boolean
-  metrics: 'allof' | 'oneof'
+  metrics: 'allof' | 'anyof'
   criteria: Criterion[]
 }

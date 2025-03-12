@@ -73,7 +73,7 @@ const nodes: Record<string, LocalizedNode> = {
     ],
     hidden: false,
     iconUrl: 'https://dendro-assets.oykdn.work/item/32/map.png',
-    metrics: 'oneof',
+    metrics: 'anyof',
     type: 'task',
   },
 }

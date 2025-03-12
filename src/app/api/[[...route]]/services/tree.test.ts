@@ -7,7 +7,7 @@ import { Mappings } from '@/model/Localized'
 import { ProgressRecord } from '@/model/Progress'
 import { AdvancementTree } from '@/model/Tree'
 
-const mockTask = (key: string, multipleCriteria: boolean, metrics: 'oneof' | 'allof'): IconNode => {
+const mockTask = (key: string, multipleCriteria: boolean, metrics: 'anyof' | 'allof'): IconNode => {
   return {
     key: key,
     criteria: multipleCriteria ? [{ id: 'one' }, { id: 'two' }, { id: 'three' }] : [{ id: 'one' }],
@@ -90,16 +90,16 @@ test('progressがない場合、空のProgressを返す', () => {
     records: [],
   }
 
-  const oneof = buildTree(
+  const anyof = buildTree(
     {
       categories: [],
-      nodes: [mockTask('1', true, 'oneof')],
+      nodes: [mockTask('1', true, 'anyof')],
     },
     { mappings: {} },
     record,
   )
 
-  expect(oneof.nodes.find((n) => n.key === '1')?.progress).toStrictEqual({
+  expect(anyof.nodes.find((n) => n.key === '1')?.progress).toStrictEqual({
     done: 0,
     total: 1,
   })
