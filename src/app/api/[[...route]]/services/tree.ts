@@ -20,6 +20,7 @@ export const buildTree = (
   tree: AdvancementTree,
   mappings: Mappings,
   record: ProgressRecord,
+  reveal: boolean,
 ): ProgressTree => {
   const nodes: ProgressNode[] = []
 
