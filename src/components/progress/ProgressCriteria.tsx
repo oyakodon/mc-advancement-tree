@@ -72,12 +72,14 @@ const ProgressCriteria = ({ node }: Props) => {
   )
 
   return (
-    <div className='grow bg-amber-50 border-l-4 border-amber-500 rounded-sm border p-1 overflow-auto dark:text-gray-800'>
-      <div className='flex p-1 text-sm'>
-        <CriteriaHeader progress={node.progress} metrics={node.metrics} completed={node.done} />
+    <div className='grow bg-amber-50 border-l-8 border-amber-500 rounded-l-sm border-2 p-1 overflow-auto dark:text-gray-800'>
+      <div className='flex p-1 px-2'>
+        <CriteriaHeader progress={node.progress} completed={node.done} />
       </div>
 
-      <div className='flex flex-col gap-1 pl-2 pb-2'>
+      <hr className='h-px m-1 border-0 bg-gray-200' />
+
+      <div className='flex flex-col gap-1 p-2'>
         {criteria.map((c) => {
           return (
             <CriterionRow criterion={c} metrics={node.metrics} completed={node.done} key={c.id} />
