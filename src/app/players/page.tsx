@@ -15,6 +15,7 @@ const paramSchema = z.object({
   w: z.coerce.string(),
   p: z.coerce.string(),
   lang: z.coerce.string().optional(),
+  reveal: z.coerce.string().optional(),
 })
 
 type Param = z.infer<typeof paramSchema>
@@ -29,10 +30,10 @@ const getPlayer = async ({ p: id }: { p: string }) => {
   return res.ok ? await res.json() : null
 }
 
-const getTree = async ({ w, p, lang }: Param) => {
+const getTree = async ({ w, p, lang, reveal }: Param) => {
   const res = await client.api.v1.tree.$get(
     {
-      query: { w, p, lang },
+      query: { w, p, lang, reveal },
     },
     options,
   )
