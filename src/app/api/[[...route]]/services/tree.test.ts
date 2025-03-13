@@ -195,11 +195,11 @@ test('各categoryのProgressが合成される', () => {
   })
 })
 
-test('hiddenの進捗は未達成の場合、除外する', () => {
+test('未達成の隠し実績は、デフォルトで除外する', () => {
   const record: ProgressRecord = {
     categories: [],
     progress: {
-      done: 1,
+      done: 0,
       total: 2,
     },
     records: [],
