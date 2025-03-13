@@ -49,6 +49,7 @@ const CriterionRow = ({
   completed: boolean
 }) => {
   const done = criterion.done != null
+  const id = criterion.id.replace(/^minecraft:/, '')
 
   return (
     <div className='flex text-xs'>
@@ -61,9 +62,7 @@ const CriterionRow = ({
       )}
 
       <div className='flex-auto break-all pl-2'>
-        <span className={`${done || completed ? '' : 'underline decoration-dotted'}`}>
-          {criterion.id}
-        </span>
+        <span className={`${done || completed ? '' : 'underline decoration-dotted'}`}>{id}</span>
       </div>
     </div>
   )
