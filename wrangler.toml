@@ -11,6 +11,8 @@ enabled = true
 
 [vars]
 NODE_VERSION = "22"
+# DEFAULT_LANG = "ja_jp"
+# CACHE_MAX_AGE = "60"
 
 [[kv_namespaces]]
 binding = "KV"
