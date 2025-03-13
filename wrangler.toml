@@ -14,4 +14,5 @@ NODE_VERSION = "22"
 
 [[kv_namespaces]]
 binding = "KV"
-id = "a9b7245b6c384b23a99fd0d920b067bd"
+id = "32e18d98a4934e5f8bef9e00e68c3058"
+preview_id = "a9b7245b6c384b23a99fd0d920b067bd"
