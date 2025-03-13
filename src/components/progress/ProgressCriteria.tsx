@@ -1,4 +1,5 @@
-import { CircleCheck, CircleMinus } from 'lucide-react'
+import { CircleCheck, CircleDashed, Minus } from 'lucide-react'
+import { useMemo } from 'react'
 
 import { Criterion } from '@/model/Advancement'
 import { Progress } from '@/model/Progress'
@@ -38,18 +39,20 @@ const CriteriaHeader = ({
   )
 }
 
-const CriterionRow = ({ criterion }: { criterion: Criterion }) => {
+const CriterionRow = ({ criterion, allof }: { criterion: Criterion; allof: boolean }) => {
   const done = criterion.done != null
 
   return (
     <div className='flex text-xs'>
       {done ? (
         <CircleCheck className='size-4 text-green-700' />
+      ) : allof ? (
+        <CircleDashed className='size-4 text-gray-400' />
       ) : (
-        <CircleMinus className='size-4 text-gray-400' />
+        <Minus className='size-4 text-gray-400' />
       )}
 
-      <div className='flex-auto break-all pl-3 -indent-3'>
+      <div className='flex-auto break-all pl-2 -indent-3'>
         <span className={`pl-3 ${done ? '' : 'underline decoration-dotted'}`}>{criterion.id}</span>
       </div>
     </div>
@@ -61,6 +64,14 @@ interface Props {
 }
 
 const ProgressCriteria = ({ node }: Props) => {
+  const criteria = useMemo(
+    () =>
+      node.criteria.toSorted(
+        (a, b) => (b.done ? 1 : 0) - (a.done ? 1 : 0) || a.id.localeCompare(b.id),
+      ),
+    [node],
+  )
+
   return (
     <div className='grow bg-amber-50 border-l-4 border-amber-500 rounded-sm border p-1 overflow-auto dark:text-gray-800'>
       <div className='flex p-1 text-sm'>
@@ -68,8 +79,8 @@ const ProgressCriteria = ({ node }: Props) => {
       </div>
 
       <div className='flex flex-col gap-1 pl-2 pb-2'>
-        {node.criteria.map((c) => {
-          return <CriterionRow criterion={c} key={c.id} />
+        {criteria.map((c) => {
+          return <CriterionRow criterion={c} allof={node.metrics === 'allof'} key={c.id} />
         })}
       </div>
     </div>
