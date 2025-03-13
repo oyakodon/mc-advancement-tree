@@ -1,4 +1,4 @@
-import { CircleCheck, CircleDashed, Minus } from 'lucide-react'
+import { Award, ChartPie, CircleCheck, CircleDashed, Minus } from 'lucide-react'
 import { useMemo } from 'react'
 
 import { Criterion } from '@/model/Advancement'
@@ -20,15 +20,11 @@ const CriteriaHeader = ({ progress, completed }: { progress: Progress; completed
         </span>
       </div>
 
-      <span className='flex border-2 rounded-sm p-1 bg-white'>
-        {total > 1 && metrics == 'allof' ? (
-          <>
-            {(percentage * 100).toFixed(1) || 0} % ({done || 0}/{total || 0})
-          </>
-        ) : (
-          <>{completed ? '達成済み' : '未達成'}</>
-        )}
-      </span>
+      {completed && (
+        <span className='flex rounded-sm p-1 border-2 border-amber-500'>
+          <Award fill='gold' />
+        </span>
+      )}
     </div>
   )
 }
