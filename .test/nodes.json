@@ -29,9 +29,7 @@
       }
     ],
     "iconUrl": "https://dendro-assets.oykdn.work/item/32/lead.png",
-    "children": [
-      "minecraft:husbandry/froglights"
-    ]
+    "children": ["minecraft:husbandry/froglights"]
   },
   "minecraft:adventure/adventuring_time": {
     "key": "minecraft:adventure/adventuring_time",
