@@ -1,6 +1,7 @@
+#:schema node_modules/wrangler/config-schema.json
 # https://developers.cloudflare.com/workers/wrangler/configuration/
 
-name = "next-hono-pages"
+name = "dendrogram"
 pages_build_output_dir = ".vercel/output/static"
 compatibility_date = "2025-02-06"
 compatibility_flags = [ "nodejs_compat" ]
@@ -10,7 +11,10 @@ enabled = true
 
 [vars]
 NODE_VERSION = "22"
+# DEFAULT_LANG = "ja_jp"
+# CACHE_MAX_AGE = "60"
 
 [[kv_namespaces]]
 binding = "KV"
-id = "a9b7245b6c384b23a99fd0d920b067bd"
+id = "32e18d98a4934e5f8bef9e00e68c3058"
+preview_id = "a9b7245b6c384b23a99fd0d920b067bd"
