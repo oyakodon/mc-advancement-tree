@@ -218,6 +218,46 @@ test('未達成の隠し実績は、デフォルトで除外する', () => {
   expect(tree.nodes.find((n) => n.key === '2')).toBeDefined()
 })
 
+test('達成済みの隠し実績は返却する', () => {
+  const record: ProgressRecord = {
+    categories: [],
+    progress: {
+      done: 0,
+      total: 2,
+    },
+    records: [
+      {
+        key: '1',
+        done: true,
+        criteria: [
+          {
+            id: 'one',
+            done: '2025-01-23T04:56:00Z',
+          },
+        ],
+        progress: {
+          done: 1,
+          total: 1,
+          achieved: '2025-01-23T04:56:00Z',
+        },
+      },
+    ],
+  }
+
+  const tree = buildTree(
+    {
+      categories: [],
+      nodes: [mockTask('1', false, 'allof', true), mockTask('2', false, 'allof', false)],
+    },
+    { mappings: {} },
+    record,
+    false,
+  )
+
+  expect(tree.nodes.find((n) => n.key === '1')).toBeDefined()
+  expect(tree.nodes.find((n) => n.key === '2')).toBeDefined()
+})
+
 test('revealが指定されていれば、未達成の隠し実績でも返却する', () => {
   const record: ProgressRecord = {
     categories: [],
