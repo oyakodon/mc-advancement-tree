@@ -39,21 +39,31 @@ const CriteriaHeader = ({
   )
 }
 
-const CriterionRow = ({ criterion, allof }: { criterion: Criterion; allof: boolean }) => {
+const CriterionRow = ({
+  criterion,
+  metrics,
+  completed,
+}: {
+  criterion: Criterion
+  metrics: 'allof' | 'anyof'
+  completed: boolean
+}) => {
   const done = criterion.done != null
 
   return (
     <div className='flex text-xs'>
       {done ? (
         <CircleCheck className='size-4 text-green-700' />
-      ) : allof ? (
+      ) : metrics === 'allof' ? (
         <CircleDashed className='size-4 text-gray-400' />
       ) : (
         <Minus className='size-4 text-gray-400' />
       )}
 
-      <div className='flex-auto break-all pl-2 -indent-3'>
-        <span className={`pl-3 ${done ? '' : 'underline decoration-dotted'}`}>{criterion.id}</span>
+      <div className='flex-auto break-all pl-2'>
+        <span className={`${done || completed ? '' : 'underline decoration-dotted'}`}>
+          {criterion.id}
+        </span>
       </div>
     </div>
   )
@@ -80,7 +90,9 @@ const ProgressCriteria = ({ node }: Props) => {
 
       <div className='flex flex-col gap-1 pl-2 pb-2'>
         {criteria.map((c) => {
-          return <CriterionRow criterion={c} allof={node.metrics === 'allof'} key={c.id} />
+          return (
+            <CriterionRow criterion={c} metrics={node.metrics} completed={node.done} key={c.id} />
+          )
         })}
       </div>
     </div>
