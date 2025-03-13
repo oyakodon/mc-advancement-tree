@@ -1,0 +1,22 @@
+{
+  "minecraft:story/root": {
+    "title": "Minecraft",
+    "description": "ゲームのストーリーと核心"
+  },
+  "minecraft:adventure/adventuring_time": {
+    "title": "冒険の時間",
+    "description": "すべての種類のバイオームを発見する"
+  },
+  "minecraft:adventure/kill_a_mob": {
+    "title": "モンスターハンター",
+    "description": "敵対的なモンスターを倒す"
+  },
+  "minecraft:end/dragon_breath": {
+    "title": "口臭に気をつけよう",
+    "description": "ガラス瓶にドラゴンブレスを採取する"
+  },
+  "minecraft:husbandry/leash_all_frog_variants": {
+    "title": "みんなで町に跳び込もう",
+    "description": "それぞれの種類のカエルをリードで繋ぐ"
+  }
+}

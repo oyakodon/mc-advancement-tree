@@ -1,0 +1,348 @@
+{
+  "minecraft:story/root": {
+    "key": "minecraft:story/root",
+    "children": [],
+    "criteria": [
+      {
+        "id": "crafting_table"
+      }
+    ],
+    "hidden": false,
+    "iconUrl": "https://dendro-assets.oykdn.work/block/32/grass_block.png",
+    "metrics": "allof",
+    "type": "task"
+  },
+  "minecraft:husbandry/leash_all_frog_variants": {
+    "key": "minecraft:husbandry/leash_all_frog_variants",
+    "type": "task",
+    "hidden": false,
+    "metrics": "allof",
+    "criteria": [
+      {
+        "id": "minecraft:cold"
+      },
+      {
+        "id": "minecraft:temperate"
+      },
+      {
+        "id": "minecraft:warm"
+      }
+    ],
+    "iconUrl": "https://dendro-assets.oykdn.work/item/32/lead.png",
+    "children": [
+      "minecraft:husbandry/froglights"
+    ]
+  },
+  "minecraft:adventure/adventuring_time": {
+    "key": "minecraft:adventure/adventuring_time",
+    "type": "challenge",
+    "children": [],
+    "hidden": false,
+    "metrics": "allof",
+    "criteria": [
+      {
+        "id": "minecraft:deep_dark"
+      },
+      {
+        "id": "minecraft:plains"
+      },
+      {
+        "id": "minecraft:river"
+      },
+      {
+        "id": "minecraft:cold_ocean"
+      },
+      {
+        "id": "minecraft:forest"
+      },
+      {
+        "id": "minecraft:snowy_plains"
+      },
+      {
+        "id": "minecraft:sparse_jungle"
+      },
+      {
+        "id": "minecraft:swamp"
+      },
+      {
+        "id": "minecraft:bamboo_jungle"
+      },
+      {
+        "id": "minecraft:sunflower_plains"
+      },
+      {
+        "id": "minecraft:taiga"
+      },
+      {
+        "id": "minecraft:deep_lukewarm_ocean"
+      },
+      {
+        "id": "minecraft:frozen_peaks"
+      },
+      {
+        "id": "minecraft:jungle"
+      },
+      {
+        "id": "minecraft:deep_frozen_ocean"
+      },
+      {
+        "id": "minecraft:windswept_forest"
+      },
+      {
+        "id": "minecraft:cherry_grove"
+      },
+      {
+        "id": "minecraft:deep_cold_ocean"
+      },
+      {
+        "id": "minecraft:savanna"
+      },
+      {
+        "id": "minecraft:beach"
+      },
+      {
+        "id": "minecraft:eroded_badlands"
+      },
+      {
+        "id": "minecraft:wooded_badlands"
+      },
+      {
+        "id": "minecraft:deep_ocean"
+      },
+      {
+        "id": "minecraft:old_growth_pine_taiga"
+      },
+      {
+        "id": "minecraft:windswept_gravelly_hills"
+      },
+      {
+        "id": "minecraft:desert"
+      },
+      {
+        "id": "minecraft:dripstone_caves"
+      },
+      {
+        "id": "minecraft:old_growth_birch_forest"
+      },
+      {
+        "id": "minecraft:pale_garden"
+      },
+      {
+        "id": "minecraft:lukewarm_ocean"
+      },
+      {
+        "id": "minecraft:warm_ocean"
+      },
+      {
+        "id": "minecraft:frozen_river"
+      },
+      {
+        "id": "minecraft:ocean"
+      },
+      {
+        "id": "minecraft:old_growth_spruce_taiga"
+      },
+      {
+        "id": "minecraft:snowy_slopes"
+      },
+      {
+        "id": "minecraft:stony_peaks"
+      },
+      {
+        "id": "minecraft:stony_shore"
+      },
+      {
+        "id": "minecraft:jagged_peaks"
+      },
+      {
+        "id": "minecraft:flower_forest"
+      },
+      {
+        "id": "minecraft:grove"
+      },
+      {
+        "id": "minecraft:lush_caves"
+      },
+      {
+        "id": "minecraft:mushroom_fields"
+      },
+      {
+        "id": "minecraft:savanna_plateau"
+      },
+      {
+        "id": "minecraft:snowy_taiga"
+      },
+      {
+        "id": "minecraft:birch_forest"
+      },
+      {
+        "id": "minecraft:ice_spikes"
+      },
+      {
+        "id": "minecraft:meadow"
+      },
+      {
+        "id": "minecraft:snowy_beach"
+      },
+      {
+        "id": "minecraft:frozen_ocean"
+      },
+      {
+        "id": "minecraft:dark_forest"
+      },
+      {
+        "id": "minecraft:mangrove_swamp"
+      },
+      {
+        "id": "minecraft:windswept_hills"
+      },
+      {
+        "id": "minecraft:windswept_savanna"
+      },
+      {
+        "id": "minecraft:badlands"
+      }
+    ],
+    "iconUrl": "https://dendro-assets.oykdn.work/item/32/diamond_boots.png"
+  },
+  "minecraft:adventure/kill_a_mob": {
+    "key": "minecraft:adventure/kill_a_mob",
+    "type": "task",
+    "hidden": false,
+    "metrics": "anyof",
+    "criteria": [
+      {
+        "id": "minecraft:vindicator"
+      },
+      {
+        "id": "minecraft:zombie"
+      },
+      {
+        "id": "minecraft:cave_spider"
+      },
+      {
+        "id": "minecraft:enderman"
+      },
+      {
+        "id": "minecraft:endermite"
+      },
+      {
+        "id": "minecraft:husk"
+      },
+      {
+        "id": "minecraft:magma_cube"
+      },
+      {
+        "id": "minecraft:silverfish"
+      },
+      {
+        "id": "minecraft:hoglin"
+      },
+      {
+        "id": "minecraft:spider"
+      },
+      {
+        "id": "minecraft:elder_guardian"
+      },
+      {
+        "id": "minecraft:ender_dragon"
+      },
+      {
+        "id": "minecraft:pillager"
+      },
+      {
+        "id": "minecraft:skeleton"
+      },
+      {
+        "id": "minecraft:evoker"
+      },
+      {
+        "id": "minecraft:phantom"
+      },
+      {
+        "id": "minecraft:stray"
+      },
+      {
+        "id": "minecraft:vex"
+      },
+      {
+        "id": "minecraft:witch"
+      },
+      {
+        "id": "minecraft:bogged"
+      },
+      {
+        "id": "minecraft:breeze"
+      },
+      {
+        "id": "minecraft:creaking"
+      },
+      {
+        "id": "minecraft:drowned"
+      },
+      {
+        "id": "minecraft:guardian"
+      },
+      {
+        "id": "minecraft:piglin_brute"
+      },
+      {
+        "id": "minecraft:blaze"
+      },
+      {
+        "id": "minecraft:creeper"
+      },
+      {
+        "id": "minecraft:piglin"
+      },
+      {
+        "id": "minecraft:shulker"
+      },
+      {
+        "id": "minecraft:wither_skeleton"
+      },
+      {
+        "id": "minecraft:zombie_villager"
+      },
+      {
+        "id": "minecraft:ravager"
+      },
+      {
+        "id": "minecraft:slime"
+      },
+      {
+        "id": "minecraft:wither"
+      },
+      {
+        "id": "minecraft:zoglin"
+      },
+      {
+        "id": "minecraft:ghast"
+      },
+      {
+        "id": "minecraft:zombified_piglin"
+      }
+    ],
+    "iconUrl": "https://dendro-assets.oykdn.work/item/32/iron_sword.png",
+    "children": [
+      "minecraft:adventure/shoot_arrow",
+      "minecraft:adventure/totem_of_undying",
+      "minecraft:adventure/kill_all_mobs",
+      "minecraft:adventure/kill_mob_near_sculk_catalyst",
+      "minecraft:adventure/throw_trident"
+    ]
+  },
+  "minecraft:end/dragon_breath": {
+    "key": "minecraft:end/dragon_breath",
+    "type": "goal",
+    "hidden": false,
+    "metrics": "allof",
+    "criteria": [
+      {
+        "id": "dragon_breath"
+      }
+    ],
+    "children": [],
+    "iconUrl": "https://dendro-assets.oykdn.work/item/32/dragon_breath.png"
+  }
+}
