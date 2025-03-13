@@ -11,6 +11,15 @@ import { client, options } from '@/lib/hono'
 export const runtime = 'edge'
 export const dynamic = 'force-dynamic'
 
+const paramSchema = z.object({
+  w: z.coerce.string(),
+  p: z.coerce.string(),
+  lang: z.coerce.string().optional(),
+  reveal: z.coerce.string().optional(),
+})
+
+type Param = z.infer<typeof paramSchema>
+
 const getPlayer = async ({ p: id }: { p: string }) => {
   const res = await client.api.v1.players[':id'].$get(
     {
@@ -21,28 +30,22 @@ const getPlayer = async ({ p: id }: { p: string }) => {
   return res.ok ? await res.json() : null
 }
 
-const getTree = async ({ w, p, lang }: { w: string; p: string; lang?: string }) => {
+const getTree = async ({ w, p, lang, reveal }: Param) => {
   const res = await client.api.v1.tree.$get(
     {
-      query: { w, p, lang },
+      query: { w, p, lang, reveal },
     },
     options,
   )
   return res.ok ? await res.json() : null
 }
 
-const schema = z.object({
-  w: z.coerce.string(),
-  p: z.coerce.string(),
-  lang: z.coerce.string().optional(),
-})
-
 type Props = {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }
 
 export async function generateMetadata({ searchParams }: Props): Promise<Metadata> {
-  const parsed = schema.safeParse(await searchParams)
+  const parsed = paramSchema.safeParse(await searchParams)
   const player = parsed.success ? await getPlayer(parsed.data) : null
 
   return {
@@ -56,7 +59,7 @@ const navItems = (worldId: string, name: string) => [
 ]
 
 export default async function Player({ searchParams }: Props) {
-  const parsed = schema.safeParse(await searchParams)
+  const parsed = paramSchema.safeParse(await searchParams)
   const player = parsed.success ? await getPlayer(parsed.data) : null
   const tree = parsed.success ? await getTree(parsed.data) : null
 

@@ -16,16 +16,28 @@ const zeroProgress = (node: IconNode): ProgressEntry => {
   }
 }
 
-export const buildTree = (
-  tree: AdvancementTree,
-  mappings: Mappings,
-  record: ProgressRecord,
-): ProgressTree => {
+export const buildTree = ({
+  tree,
+  mappings,
+  record,
+  reveal = false,
+}: {
+  tree: AdvancementTree
+  mappings: Mappings
+  record: ProgressRecord
+  reveal?: boolean
+}): ProgressTree => {
   const nodes: ProgressNode[] = []
 
   // 進捗ツリーの各nodeに対応する進捗レコードがあれば、合成。なければ、done: 0の進捗レコードを返す
   for (const node of tree.nodes) {
     const r = record.records.find((e) => e.key == node.key) || zeroProgress(node)
+
+    // 未達成の隠し実績は revealがtrueでない限り、返さない
+    if (node.hidden && !r.done && !reveal) {
+      continue
+    }
+
     const p: ProgressNode = {
       ...node,
       ...r,
@@ -39,8 +51,6 @@ export const buildTree = (
     ...c,
     ...mappings.mappings[c.root],
   }))
-
-  // TODO: hiddenの場合の処理
 
   return {
     categories,
