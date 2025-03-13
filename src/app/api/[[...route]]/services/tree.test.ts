@@ -7,19 +7,24 @@ import { Mappings } from '@/model/Localized'
 import { ProgressRecord } from '@/model/Progress'
 import { AdvancementTree } from '@/model/Tree'
 
-const mockTask = (key: string, multipleCriteria: boolean, metrics: 'anyof' | 'allof'): IconNode => {
+const mockTask = (
+  key: string,
+  multipleCriteria: boolean,
+  metrics: 'anyof' | 'allof',
+  hidden: boolean,
+): IconNode => {
   return {
     key: key,
     criteria: multipleCriteria ? [{ id: 'one' }, { id: 'two' }, { id: 'three' }] : [{ id: 'one' }],
     children: [],
-    hidden: false,
+    hidden,
     iconUrl: '',
     metrics,
     type: 'task',
   }
 }
 
-const taskSingle = (key: string): IconNode => mockTask(key, false, 'allof')
+const taskSingle = (key: string): IconNode => mockTask(key, false, 'allof', false)
 
 test('seed:treeとProgressRecordの合成', () => {
   const seed: AdvancementTree = {
@@ -93,7 +98,7 @@ test('progressがない場合、空のProgressを返す', () => {
   const anyof = buildTree(
     {
       categories: [],
-      nodes: [mockTask('1', true, 'anyof')],
+      nodes: [mockTask('1', true, 'anyof', false)],
     },
     { mappings: {} },
     record,
@@ -107,7 +112,7 @@ test('progressがない場合、空のProgressを返す', () => {
   const allof = buildTree(
     {
       categories: [],
-      nodes: [mockTask('1', true, 'allof')],
+      nodes: [mockTask('1', true, 'allof', false)],
     },
     { mappings: {} },
     record,
@@ -188,4 +193,27 @@ test('各categoryのProgressが合成される', () => {
     done: 0,
     total: 1,
   })
+})
+
+test('hiddenの進捗は未達成の場合、除外する', () => {
+  const record: ProgressRecord = {
+    categories: [],
+    progress: {
+      done: 1,
+      total: 2,
+    },
+    records: [],
+  }
+
+  const tree = buildTree(
+    {
+      categories: [],
+      nodes: [mockTask('1', false, 'allof', true), mockTask('2', false, 'allof', false)],
+    },
+    { mappings: {} },
+    record,
+  )
+
+  expect(tree.nodes.find((n) => n.key === '1')).toBeUndefined()
+  expect(tree.nodes.find((n) => n.key === '2')).toBeDefined()
 })
