@@ -36,12 +36,13 @@ export const app = new Hono().get(
       w: z.string(),
       p: z.string(),
       lang: z.string().default(DEFAULT_LANG),
+      reveal: z.coerce.boolean().default(false),
     }),
   ),
   async (c) => {
     const reqCtx = getRequestContext()
     const { KV } = reqCtx.env
-    const { w: worldId, p: playerId, lang } = c.req.valid('query')
+    const { w: worldId, p: playerId, lang, reveal } = c.req.valid('query')
 
     if (!worldId || !playerId) {
       return c.text('invalid query', 400)
@@ -69,6 +70,6 @@ export const app = new Hono().get(
     }
 
     // 進捗ツリー・翻訳・進捗レコードを合成してレスポンスを生成
-    return c.json(buildTree(seed.tree, seed.mappings, record))
+    return c.json(buildTree(seed.tree, seed.mappings, record, reveal))
   },
 )
