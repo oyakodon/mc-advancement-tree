@@ -70,6 +70,6 @@ export const app = new Hono().get(
     }
 
     // 進捗ツリー・翻訳・進捗レコードを合成してレスポンスを生成
-    return c.json(buildTree(seed.tree, seed.mappings, record, reveal))
+    return c.json(buildTree({ ...seed, record, reveal }))
   },
 )

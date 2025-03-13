@@ -16,12 +16,17 @@ const zeroProgress = (node: IconNode): ProgressEntry => {
   }
 }
 
-export const buildTree = (
-  tree: AdvancementTree,
-  mappings: Mappings,
-  record: ProgressRecord,
-  reveal: boolean = false,
-): ProgressTree => {
+export const buildTree = ({
+  tree,
+  mappings,
+  record,
+  reveal = false,
+}: {
+  tree: AdvancementTree
+  mappings: Mappings
+  record: ProgressRecord
+  reveal?: boolean
+}): ProgressTree => {
   const nodes: ProgressNode[] = []
 
   // 進捗ツリーの各nodeに対応する進捗レコードがあれば、合成。なければ、done: 0の進捗レコードを返す
