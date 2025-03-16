@@ -65,7 +65,7 @@
     "storybook": "8.6.6",
     "typescript": "^5.8.2",
     "vitest": "^3.0.8",
-    "wrangler": "^3.113.0"
+    "wrangler": "^4.0.0"
   },
   "eslintConfig": {
     "extends": [
